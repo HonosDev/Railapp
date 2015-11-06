@@ -1,0 +1,16 @@
+/**
+ * simple.css - CSS File - RailApp
+ * This CSS file has been created to manage all basic and simple CSS properties
+ * Example :
+ *      .strong{
+ *          font-weight: bold;
+ *      }
+ */
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.ul-li-active-grey li:active{
+    background: #00afd3;
+}
