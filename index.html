@@ -14,18 +14,26 @@
     </head>
     
     <body onload="init();">
+    
+    <!-- MAIN PAGE -->
         <div data-role="page" id="main">
+        
+            <!-- panel START-->
             <div data-role="panel" id="menu_panel">
-                <ul>
-                    <li>TEST</li>
+                <ul data-role="listview">
+                    <li><a href="#main">Search</a></li>
+                    <li><a href="#favorites">Favorites</a></li>
+                    <li><a href="#alarms">Alarms</a></li>
+                    <li><a href="#settings">Settings</a></li>
                 </ul>
             </div>
+            <!-- panel END -->        
+        
             <div data-role="header" role="banner">
-                <heading> <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
-
-                     <h1 class="ui-title">RailApp </h1>
- <a href="#" id="trafic-alert" data-role="button" data-icon="alert" class="ui-link ui-btn-right ui-btn ui-icon-alert ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
-
+                <heading>
+                    <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
+                    <h1 class="ui-title">RailApp </h1>
+                    <a href="#" id="trafic-alert" data-role="button" data-icon="alert" class="ui-link ui-btn-right ui-btn ui-icon-alert ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
                 </heading>
             </div>
             <div data-role="content">
@@ -68,7 +76,7 @@
                             <div class="ui-block-b"> <a href="#" data-role="button" data-inline="true" data-icon="location" data-iconpos="left" class="ui-icon-location ui-btn-icon-left">Locate</a>
 
                             </div>
-                            <div class="ui-block-c"> <a href="#" data-role="button" data-inline="true" data-icon="check" data-iconpos="left" class="ui-icon-check ui-btn-icon-left ui-btn-b">GO !</a>
+                            <div class="ui-block-c"> <a href="#search" data-role="button" data-inline="true" data-icon="check" data-iconpos="left" class="ui-icon-check ui-btn-icon-left ui-btn-b">GO !</a>
 
                             </div>
                         </div>
@@ -89,7 +97,200 @@
                     <nav></nav>
                 </div>
             </div>
-        </div>
+        </div><!-- /page -->
+        
+        <!-- SEARCH RESULT PAGE -->
+        <div data-role="page" id="search">
+        
+        <div data-role="header" role="banner">
+        	    <a href="#" data-rel="back" data-icon="back" data-iconpos="notext"></a>
+                <h1 class="ui-title">Search Results</h1>
+        	</div><!-- /header -->
+        
+        	<div data-role="content">
+                <div class="ui-corner-all custom-corners">
+                    <div class="ui-bar ui-bar-a">
+        	            <h3>Paisley Gilmore Street to Glasgow Central</h3>
+                    </div>
+                <div class="ui-body ui-body-a">
+            		<div class="ui-grid-d" align="right">
+                        <div class="ui-block-a">Depart.</div>
+                        <div class="ui-block-b">Changes</div>
+                        <div class="ui-block-c">Arrival</div>
+                        <div class="ui-block-d">Track</div>
+                        <div class="ui-block-e" align="center">&pound;</div>
+                    </div>
+                </div>
+            </div>
+        	    
+        		<div data-role="collapsible" data-collapsed="true" data-expanded-icon="carat-u" data-collapsed-icon="carat-d">
+        		    <h3>
+            		    <div class="ui-grid-d"  align="center">
+                        	<div class="ui-block-a">10:00</div>
+                        	<div class="ui-block-b">0</div>
+                        	<div class="ui-block-c">10:20</div>
+                        	<div class="ui-block-d">2</div>
+                        	<div class="ui-block-e">3.80</div>
+                        </div>
+                    </h3>
+                </div>
+                
+                <div data-role="collapsible" data-theme="b" data-collapsed="false" data-expanded-icon="carat-u" data-collapsed-icon="carat-d">
+                    <h3>
+            		    <div class="ui-grid-d"  align="center">
+                        	<div class="ui-block-a">10:10</div>
+                        	<div class="ui-block-b">1</div>
+                        	<div class="ui-block-c">10:35</div>
+                        	<div class="ui-block-d">3</div>
+                        	<div class="ui-block-e">3.80</div>
+                        </div>
+                    </h3>
+                    <ul data-role="listview">
+                        <li>Paisley Gilmore Street to Hillington West</li>
+                        <li>Hillington West to Glasgow Central</li>
+                    </ul>
+                </div>
+                
+        	</div><!-- /content -->
+        
+        	<div data-role="footer" data-position="fixed">
+                <nav></nav>
+        	</div><!-- /footer -->
+        </div><!-- /page -->
+        
+        <!-- FAVORITES PAGE -->
+        <div data-role="page" id="favorites">   
+        
+            <!-- panel START-->
+            <div data-role="panel" id="menu_panel">
+                <ul data-role="listview">
+                    <li><a href="#main">Search</a></li>
+                    <li><a href="#favorites">Favorites</a></li>
+                    <li><a href="#alarms">Alarms</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </div>
+            <!-- panel END -->        
+
+            <div data-role="header" role="banner">
+                <heading>
+                    <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
+                    <h1 class="ui-title">Favorites</h1>
+                </heading>
+        	</div><!-- /header -->
+        
+        	<div data-role="content">	
+        		<ul data-role="listview">
+        		     <li class="ui-btn ui-btn-icon-right ui-li ui-li-has-icon ui-btn-up-c">
+        		        Paisley - Glasgow
+        		        <span class="ui-icon-delete"></span> 
+        		     </li>
+        		</ul>  		
+        	</div><!-- /content -->
+        
+        	<div data-role="footer" data-position="fixed">
+                <nav></nav>
+        	</div><!-- /footer -->
+        </div><!-- /page -->
+        
+        <!-- ALARMS PAGE -->
+        <div data-role="page" id="alarms">   
+        
+            <!-- panel START-->
+            <div data-role="panel" id="menu_panel">
+                <ul data-role="listview">
+                    <li><a href="#main">Search</a></li>
+                    <li><a href="#favorites">Favorites</a></li>
+                    <li><a href="#alarms">Alarms</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </div>
+            <!-- panel END -->        
+
+            <div data-role="header" role="banner">
+                <heading>
+                    <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
+                    <h1 class="ui-title">Alarms</h1>
+                </heading>
+        	</div><!-- /header -->
+        
+        	<div data-role="content">	
+        		<div class="ui-body ui-body-a">
+        		    <h3>Paisley - Glasgow</h3>
+        		    <p>Departure: 10:10</p>
+        		    <p>Track: 4</p>
+        		    <div class="ui-grid-a">
+                    	<div class="ui-block-a"><p>Alarm:</p></button></div>
+                    	<div class="ui-block-b"><input type="time" name="travel-time" id="travel-time" value="09:52"></button></div>
+        		    </div>
+        		</div>
+        	</div><!-- /content -->
+        
+        	<div data-role="footer" data-position="fixed">
+                <nav></nav>
+        	</div><!-- /footer -->
+        </div><!-- /page -->
+        
+        <!-- ALARM POPUP PAGE -->
+        <div data-role="page" id="alarm_popup">        
+
+        	<div data-role="header">
+        	    <a href="#" data-rel="back" data-icon="back" data-iconpos="notext"></a>
+        		<h1>Set an alarm</h1>
+        	</div><!-- /header -->
+        
+        	<div data-role="content">	
+                <p>Content here.</p>		
+        	</div><!-- /content -->
+        
+        	<div data-role="footer" data-position="fixed">
+                <nav></nav>
+        	</div><!-- /footer -->
+        </div><!-- /page -->
+        
+        
+        
+        <!-- SETTINGS PAGE -->
+        <div data-role="page" id="settings">   
+        
+            <!-- panel START-->
+            <div data-role="panel" id="menu_panel">
+                <ul data-role="listview">
+                    <li><a href="#main">Search</a></li>
+                    <li><a href="#favorites">Favorites</a></li>
+                    <li><a href="#alarms">Alarms</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </div>
+            <!-- panel END -->        
+
+            <div data-role="header" role="banner">
+                <heading>
+                    <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
+                    <h1 class="ui-title">Settings</h1>
+                </heading>
+        	</div><!-- /header -->
+        
+        	<div data-role="content">
+        	    <ul data-role="listview">
+        		    <li>
+        		        <!-- TODO http://demos.jquerymobile.com/1.4.3/slider-flipswitch/ -->
+                        <label for="slider-flip-m">Setting 1:</label>
+                        <select name="slider-flip-m" id="slider-flip-m" data-role="slider" data-mini="true">
+                            <option value="off">Off</option>
+                            <option value="on" selected="">On</option>
+                        </select>
+        		    </li>
+        		    <li></li>
+        		    <li></li>
+        		</ul>		
+        	</div><!-- /content -->
+        
+        	<div data-role="footer" data-position="fixed">
+                <nav></nav>
+        	</div><!-- /footer -->
+        </div><!-- /page -->
+        
     </body>
 
 </html>
