@@ -1,6 +1,7 @@
 /**
  * init.js - Javascript File - RailApp
  * This javascript file manage to do every thing which have to be done when the document has been successufly loaded (body:onload)
+ * @author B00290473 
  */
 
 function init() {
@@ -10,11 +11,14 @@ function init() {
      * We use $.datepicker from jQuery UI plugin
      */
     var date = new Date($.now());
-    console.log(date.getFullYear()+"-"+date.getMonth()+"-"+date.getUTCDay());
     date = $.datepicker.formatDate('yy-mm-dd', new Date());
-    console.log(date);
     $("#travel-date").val(date);
 
-
+    /**
+     * Launch unit test functions
+     * Look into the javascript console to see the unit tests. Comment the line bellow to disable unit test.
+     */
+    //unitTest(); 		/* Model unit tests */
+    ApiUnitTest();		/* Api requests unit tests */
 
 } /* INIT FUNCTION END */

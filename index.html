@@ -10,6 +10,10 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        
+        <script src="js/api.js"></script>
+        <script src="js/model.js"></script>
+        <script src="js/unittest.js"></script>
         <script src="js/init.js"></script>
     </head>
     
@@ -93,9 +97,10 @@
                         </li>
                     </ul>
                 </div>
-                <div data-role="footer" data-position="fixed">
-                    <nav></nav>
-                </div>
+            </div>
+            <div data-role="footer">
+                <a href="#" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-power">From</a>
+                <a href="#" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-power">From/To</a>
             </div>
         </div><!-- /page -->
         
@@ -110,7 +115,7 @@
         	<div data-role="content">
                 <div class="ui-corner-all custom-corners">
                     <div class="ui-bar ui-bar-a">
-        	            <h3>Paisley Gilmore Street to Glasgow Central</h3>
+        	            <h3 id="search-title">Paisley Gilmore Street to Glasgow Central</h3>
                     </div>
                 <div class="ui-body ui-body-a">
             		<div class="ui-grid-d" align="right">
