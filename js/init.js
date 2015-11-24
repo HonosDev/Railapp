@@ -18,7 +18,7 @@ function init() {
      * Launch unit test functions
      * Look into the javascript console to see the unit tests. Comment the line bellow to disable unit test.
      */
-    //unitTest(); 		/* Model unit tests */
+    modelUnitTest(); 		/* Model unit tests */
     ApiUnitTest();		/* Api requests unit tests */
 
 } /* INIT FUNCTION END */

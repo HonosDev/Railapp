@@ -6,28 +6,32 @@
 
 /**
  * Departure - Object Definition
- * @author B00290473
+ * @author B00290473, B00294525
  * @param station d_station This is the departure station code 
  * @param date d_time This is the departure date 
  * @param station d_arrival This is the arrival station code
+ * @param d_platform This is the platform the train is leaving from
  */
-var Departure = function(d_station, d_time, d_arrival){
+var Departure = function(d_station, d_time, d_arrival, d_platform){
 	this.d_station = d_station;
 	this.d_time = d_time;
 	this.d_arrival = d_arrival;
+	this.d_platform = d_platform; 
 }
 
 /**
  * Arrival - Object Definition
- * @author B00290473
+ * @author B00290473, B00294525
  * @param station a_station This is the arrival station
  * @param date a_time Tis is the arrival date
- * @param station a_departure This is the departure station
+ * @param station a_departure This is the departure station#
+ * @param a_platform This is the platform the train is arriving on
  */
-var Arrival = function(a_station, a_time, a_departure){
+var Arrival = function(a_station, a_time, a_departure, a_platform){
 	this.a_station = a_station;
 	this.a_time = a_time;
 	this.a_departure = a_departure;
+	this.a_platform = a_platform; 
 }
 
 /**
@@ -94,6 +98,16 @@ Departure.prototype.getArrival = function() {
 
 /**
  * Departure OBJECT
+ * getPlatform() - This method return the departure platfrom
+ * @author B00294525
+ * @return String
+ */
+Departure.prototype.getPlatform = function() {
+	return this.d_platform;
+};
+
+/**
+ * Departure OBJECT
  * toString() - This method return a Depature toString in the javascript console
  * @author B00290473
  * @return String
@@ -131,6 +145,16 @@ Arrival.prototype.getTime = function() {
  */
 Arrival.prototype.getDeparture = function() {
 	return this.a_departure;
+};
+
+/**
+ * Arrival OBJECT
+ * getPlatform() - This method return the arrival platfrom
+ * @author B00294525
+ * @return String
+ */
+Arrival.prototype.getPlatform = function() {
+	return this.a_platform;
 };
 
 /**
