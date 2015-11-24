@@ -3,6 +3,7 @@
  * This javascript file manage to do every thing which have to be done when the document has been successufly loaded (body:onload)
  * @author B00290473 
  */
+$(document).on("pagebeforeshow", init());
 
 function init() {
 
@@ -13,7 +14,7 @@ function init() {
     var date = new Date($.now());
     date = $.datepicker.formatDate('yy-mm-dd', new Date());
     $("#travel-date").val(date);
-
+    console.log($("#travel-date").val());
     /**
      * Launch unit test functions
      * Look into the javascript console to see the unit tests. Comment the line bellow to disable unit test.
