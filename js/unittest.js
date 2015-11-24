@@ -52,5 +52,6 @@ function ApiUnitTest(){
 	console.log("* Can be disable in init.js *")
 	console.log("*****************************")
 
-	getTrain();
+	var s2 = new Station("Paisley Gilmour","PYG")
+	getTrain(s2,"","");
 }

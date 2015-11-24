@@ -14,12 +14,12 @@ function init() {
     var date = new Date($.now());
     date = $.datepicker.formatDate('yy-mm-dd', new Date());
     $("#travel-date").val(date);
-    console.log($("#travel-date").val());
+
     /**
      * Launch unit test functions
      * Look into the javascript console to see the unit tests. Comment the line bellow to disable unit test.
      */
-    modelUnitTest(); 		/* Model unit tests */
+    //modelUnitTest(); 		/* Model unit tests */
     ApiUnitTest();		/* Api requests unit tests */
 
 } /* INIT FUNCTION END */
