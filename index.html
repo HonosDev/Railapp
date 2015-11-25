@@ -33,7 +33,7 @@
             </div>
             <!-- panel END -->        
         
-            <div data-role="header" role="banner">
+            <div data-role="header" data-position="fixed" role="banner">
                 <heading>
                     <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
                     <h1 class="ui-title">RailApp </h1>
@@ -51,13 +51,13 @@
                         <div class="ui-grid-a ui-responsive">
                             <div class="ui-block-a">
                                 <label for="station-departure" class="ui-hidden-accessible">Departure station:</label>
-                                <input type="text" name="station-departure" id="station-departure" placeholder="Departure station" value="">
+                                <input type="search" name="station-departure" id="station-departure" placeholder="Departure station" value="">
                             </div>
                         </div>
                         <div class="ui-grid-a ui-responsive">
                             <div class="ui-block-a">
                                 <label for="station-arrival" class="ui-hidden-accessible">Arrival station:</label>
-                                <input type="text" name="station-arrival" id="station-arrival" placeholder="Arrival station" value="">
+                                <input type="search" name="station-arrival" id="station-arrival" placeholder="Arrival station" value="">
                             </div>
                         </div>
                         <div class="ui-grid-a ui-responsive">
@@ -74,14 +74,20 @@
                         </div>
                         <!-- buttons -->
                         <div class="ui-grid-b">
-                            <div class="ui-block-a"> <a href="#" data-role="button" data-inline="true" data-icon="forward" data-iconpos="left" class="ui-icon-forward ui-btn-icon-left">Reset</a>
-
+                            <div class="ui-block-a">
+                                <a href="#" data-role="button" data-icon="forward" data-iconpos="left" class="ui-icon-forward ui-btn-icon-left">
+                                    R
+                                </a>
                             </div>
-                            <div class="ui-block-b"> <a href="#" data-role="button" data-inline="true" data-icon="location" data-iconpos="left" class="ui-icon-location ui-btn-icon-left">Locate</a>
-
+                            <div class="ui-block-b">
+                                <a href="#" data-role="button" data-icon="location" data-iconpos="left" class="ui-icon-location ui-btn-icon-left">
+                                    L
+                                </a>
                             </div>
-                            <div class="ui-block-c"> <a href="#search" data-role="button" data-inline="true" data-icon="check" data-iconpos="left" class="ui-icon-check ui-btn-icon-left ui-btn-b">GO !</a>
-
+                            <div class="ui-block-c">
+                                <a href="#search" data-role="button" data-icon="check" data-iconpos="left" class="ui-icon-check ui-btn-icon-left ui-btn-b">
+                                    GO !
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -98,7 +104,7 @@
                     </ul>
                 </div>
             </div>
-            <div data-role="footer">
+            <div data-role="footer" data-position="fixed">
                 <a href="#" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-power">From</a>
                 <a href="#" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-power">From/To</a>
             </div>
@@ -107,7 +113,7 @@
         <!-- SEARCH RESULT PAGE -->
         <div data-role="page" id="search">
         
-        <div data-role="header" role="banner">
+        <div data-role="header" data-position="fixed" role="banner">
         	    <a href="#" data-rel="back" data-icon="back" data-iconpos="notext"></a>
                 <h1 class="ui-title">Search Results</h1>
         	</div><!-- /header -->
@@ -177,7 +183,7 @@
             </div>
             <!-- panel END -->        
 
-            <div data-role="header" role="banner">
+            <div data-role="header" data-position="fixed" role="banner">
                 <heading>
                     <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
                     <h1 class="ui-title">Favorites</h1>
@@ -212,7 +218,7 @@
             </div>
             <!-- panel END -->        
 
-            <div data-role="header" role="banner">
+            <div data-role="header" data-position="fixed" role="banner">
                 <heading>
                     <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
                     <h1 class="ui-title">Alarms</h1>
@@ -225,8 +231,12 @@
         		    <p>Departure: 10:10</p>
         		    <p>Track: 4</p>
         		    <div class="ui-grid-a">
-                    	<div class="ui-block-a"><p>Alarm:</p></button></div>
-                    	<div class="ui-block-b"><input type="time" name="travel-time" id="travel-time" value="09:52"></button></div>
+                    	<div class="ui-block-a">
+                    	    <p>Alarm:</p>
+                    	</div>
+                    	<div class="ui-block-b">
+                    	    <input type="time" name="travel-time" id="travel-time" value="09:52">
+                    	</div>
         		    </div>
         		</div>
         	</div><!-- /content -->
@@ -239,7 +249,7 @@
         <!-- ALARM POPUP PAGE -->
         <div data-role="page" id="alarm_popup">        
 
-        	<div data-role="header">
+        	<div data-role="header" data-position="fixed">
         	    <a href="#" data-rel="back" data-icon="back" data-iconpos="notext"></a>
         		<h1>Set an alarm</h1>
         	</div><!-- /header -->
@@ -279,15 +289,18 @@
         	<div data-role="content">
         	    <ul data-role="listview">
         		    <li>
-        		        <!-- TODO http://demos.jquerymobile.com/1.4.3/slider-flipswitch/ -->
-                        <label for="slider-flip-m">Setting 1:</label>
-                        <select name="slider-flip-m" id="slider-flip-m" data-role="slider" data-mini="true">
-                            <option value="off">Off</option>
-                            <option value="on" selected="">On</option>
-                        </select>
+        		        <div class="ui-grid-a">
+        		            <div class="ui-block-a">
+        		                Setting 1:
+        		            </div>
+        		            <div class="ui-block-b">
+        		                <select id="select-based-flipswitch" data-role="flipswitch">
+                                  <option value="leave">Off</option>
+                                  <option value="arrive">On</option>
+                                </select>
+        		            </div>
+        		        </div>
         		    </li>
-        		    <li></li>
-        		    <li></li>
         		</ul>		
         	</div><!-- /content -->
         
