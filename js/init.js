@@ -21,5 +21,10 @@ function init() {
      */
     //modelUnitTest(); 		/* Model unit tests */
     ApiUnitTest();		/* Api requests unit tests */
+    
+    /**
+     * Launch notifyTest to determine api compability.
+     */
+    notifyTest();
 
 } /* INIT FUNCTION END */

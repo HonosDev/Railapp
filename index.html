@@ -15,6 +15,7 @@
     <script src="js/api.js"></script>
     <script src="js/controller.js"></script>
     <script src="js/unittest.js"></script>
+    <script src="js/notifications.js"></script>
 </head>
 
 <body class="ui-nodisc-icon ui-alt-icon">
@@ -47,6 +48,7 @@
                 <h3>Search:</h3>
 
             </div>
+            <!-- row 1 -->
             <div class="ui-body ui-body-a">
                 <div class="ui-grid-a ui-responsive">
                     <div class="ui-block-a">
@@ -61,26 +63,28 @@
                         </div>
                     </div>
                 </div>
+            <!-- row 2 -->
                 <div class="ui-grid-a">
-                    <div class="ui-block-a" style="width:45%;">
+                    <div class="ui-block-a" style="width:52%;">
                         <label for="travel-date" class="ui-hidden-accessible">Date:</label>
                         <input type="date" data-role="date" name="travel-date" id="travel-date" value="">
                     </div>
-                    <div class="ui-block-b" style="width:28%;">
+                    <div class="ui-block-b" style="width:32%;padding-left:1%;">
                         <label for="travel-time" class="ui-hidden-accessible">Time:</label>
                         <input type="time" name="travel-time" id="travel-time" value="09:52">
                     </div>
-                    <div class="ui-block-b" style="width:26%;">
-                        <a href="#" id="search_departures" class="ui-btn ui-mini ui-corner-all">Depart.</a>
+                    <div class="ui-block-b" style="width:10%;padding-left:2%">
+                        <a href="#" data-role="button" data-icon="search" data-iconpos="notext" id="search_departures" class="ui-icon-searchr ui-btn-icon-notext"><small>GO</small></a>
                     </div>
                 </div>
+            <!-- row 3 -->
                 <div class="ui-grid-a ui-responsive">
                     <div class="ui-block-a">
                         <label for="station-arrival" class="ui-hidden-accessible">Arrival station:</label>
                         <input type="search" name="station-arrival" id="station-arrival" placeholder="Arrival station" value="">
                     </div>
                 </div>
-                <!-- buttons -->
+            <!-- buttons -->
                 <div class="ui-grid-a">
                     <div class="ui-block-a" style="width:15%;">
                         <a href="#" id="reset" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-icon-delete ui-btn-icon-notext"></a>
@@ -109,7 +113,7 @@
         </div>
     </div>
     <div data-role="footer" data-position="fixed">
-        <a href="#" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-info">About</a>
+        <a href="#" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-info" style="margin-left:1%;">About</a>
     </div>
 </div><!-- /page -->
 
@@ -235,6 +239,11 @@
     </div><!-- /header -->
 
     <div data-role="content">
+        <!-- unsupported API error -->
+        <div class="ui-body ui-body-a" id="APIerror" style="margin-bottom:2%; border-style:double; border-color:red; display:none;">
+            <p style="color:red;">Your device does not support the notifications API! We are sorry.</p>
+        </div>
+        <!-- content -->
         <div class="ui-body ui-body-a">
             <h3>Paisley - Glasgow</h3>
             <p>Departure: 10:10</p>
@@ -247,6 +256,7 @@
                     <input type="time" name="travel-time" id="travel-time" value="09:52">
                 </div>
             </div>
+            <button class="ui-btn ui-corner-all" onclick="notify('Alarm Test','Content blah blub')">Alarm</button>
         </div>
     </div><!-- /content -->
 
