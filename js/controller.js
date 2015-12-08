@@ -88,15 +88,11 @@ function switchSearchForm(searchType){
         case "1":
             $("#search-type").val("1");
             $("#station-arrival").prop("disabled", true);
-            $("#button-from-search").addClass("ui-state-disabled");
-            $("#button-from-to-search").removeClass("ui-state-disabled");
             break;
 
         case "2":
             $("#search-type").val("2");
             $("#station-arrival").prop("disabled", false);
-            $("#button-from-to-search").addClass("ui-state-disabled");
-            $("#button-from-search").removeClass("ui-state-disabled");
             break;
     }
 }

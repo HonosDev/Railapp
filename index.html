@@ -4,12 +4,20 @@
 <head>
     <title>Rail-timetable App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/simple.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/simple.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+
 
     <script src="js/model.js"></script>
     <script src="js/api.js"></script>
@@ -107,7 +115,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </form>
         <!-- recent -->
         <div data-role="collapsible" data-theme="b" data-collapsed="true" data-expanded-icon="carat-u" data-collapsed-icon="carat-d">
@@ -122,8 +129,12 @@
         </div>
     </div>
     <div data-role="footer" data-position="fixed">
-        <a href="#" onclick="switchSearchForm('1');" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation" id="button-from-search" style="margin-left:1%;">From</a>
-        <a href="#" onclick="switchSearchForm('2');" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation ui-state-disabled" id="button-from-to-search" style="margin-left:1%;">From/To</a>
+        <div data-role="navbar" data-iconpos="left">
+            <ul>
+                <li><a href="#" onclick="switchSearchForm('1');" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation" id="button-from-search" style="margin-left:1%;">From</a></li>
+                <li><a href="#" onclick="switchSearchForm('2');" class="ui-btn ui-conrner-all ui-btn-inline-ui-mini footer-button-left ui-btn-icon-left ui-icon-navigation ui-btn-active" id="button-from-to-search" style="margin-left:1%;">From/To</a></li>
+            </ul>
+        </div><!-- /navbar -->
     </div>
 </div><!-- /page -->
 
