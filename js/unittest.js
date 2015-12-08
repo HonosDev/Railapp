@@ -3,7 +3,7 @@
  * @author B00290473, B00294525
  */
 
-function modelUnitTest(){
+function ModelUnitTest(){
 	console.log("****** MODEL UNIT TEST ******")
 	console.log("* Can be disable in init.js *")
 	console.log("*****************************")
@@ -45,6 +45,11 @@ function modelUnitTest(){
 	console.log(f1.getArrival());
 	console.log(f1.getDate());
 	console.log(f1.toString());
+
+	console.log("*************************")
+	console.log("API Date Regexp tests")
+	console.log(isApiDate("18-12-1995"));
+	console.log(toApiDate("18/12/1995"));
 }
 
 function ApiUnitTest(){

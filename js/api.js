@@ -11,30 +11,43 @@ var domainurl 	= "http://transportapi.com/v3/uk/";
 
 /**
  * getTrain() - Method that getting train at a given station
- * @param Departure departureStation Must be a Departure Object
+ * @param Station departureStation 
  * @param String date String format 2014-11-20
  * @param String time String format 19:45
  * @param Arrival arrivalStation Must be an Arrival Object
  */
 function getTrain(departureStation, date, time, arrivalStation){
 
+	var searchType = 1;
 	/* Create the url api request depending on parameters */
 	var url;
+	if(!isApiDate(date)){
+		date = toApiDate(date);
+	}
+
 	if(arrivalStation == null){
 		/* FROM SEARCH : No arrival station has been mentionned */
 		url = domainurl+"train/station/"+departureStation.getCode()+"/"+date+"/"+time+"/timetable.json"+keyurl;
 	}else{
+		searchType = 2;
 		/* FROM/TO SEARCH : An arrival station has been mentionned */
 		url = domainurl+"train/station/"+departureStation.getCode()+"/"+date+"/"+time+"/timetable.json"+keyurl+arrivalStation.getCode();
 	}
-	console.log(url);
+
 	var departures = [];
 	var trainStatement = $.getJSON(url, function(data){
-		console.log(data['departures']['all']);
 		$.each( data['departures']['all'], function( key, val ) {
-			var d = new Departure(departureStation, val['aimed_departure_time'], val['destination_name'], val['platform']);
+			if(val['platform'] == null){
+				val['platform'] = "Unk";
+			}
+			if(val['aimed_arrival_time'] == null){
+				val['aimed_arrival_time'] = "-"
+			}
+			var destination  = new Station(val['destination_name'], stationToCode(val['destination_name']));
+			var origin 		 = new Station(val['origin_name'], stationToCode(val['origin_name']));
+			var d = new Departure(departureStation, val['aimed_departure_time'], destination, val['platform'], val['aimed_arrival_time'], origin);
 			departures.push(d);
 		});
-		console.log(departures);
+		displayResult(searchType, departures);
 	});
 }
