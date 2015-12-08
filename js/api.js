@@ -3,7 +3,7 @@
  * @author B00290473
  */
 
-/* API AUTH CONFIGURATION */
+/* API AUTH CONFIGURATION (B00290473)*/
 var api_key 	= "2d3480365762b20cb69f48abc2713c83";
 var app_id 		= "1c833fe1";
 var keyurl 		= "?api_key="+api_key+"&app_id="+app_id;
@@ -14,7 +14,8 @@ var domainurl 	= "http://transportapi.com/v3/uk/";
  * @param Station departureStation 
  * @param String date String format 2014-11-20
  * @param String time String format 19:45
- * @param Arrival arrivalStation Must be an Arrival Object
+ * @param Station arrivalStation Must be an Arrival Object
+ * @author B00290473
  */
 function getTrain(departureStation, date, time, arrivalStation){
 
@@ -31,7 +32,7 @@ function getTrain(departureStation, date, time, arrivalStation){
 	}else{
 		searchType = 2;
 		/* FROM/TO SEARCH : An arrival station has been mentionned */
-		url = domainurl+"train/station/"+departureStation.getCode()+"/"+date+"/"+time+"/timetable.json"+keyurl+arrivalStation.getCode();
+		url = domainurl+"train/station/"+departureStation.getCode()+"/"+date+"/"+time+"/timetable.json"+keyurl+"&destination="+arrivalStation.getCode();
 	}
 
 	var departures = [];

@@ -27,7 +27,9 @@ function performSearch(typeOfSearch){
             break;
 
         case "2":
-
+            searchSetTitle(2, s_depart.getName(), s_arrival.getName());
+            searchSetHeader(2);
+            getTrain(s_depart, s_date, s_time, s_arrival);
             break;
 
         default:
@@ -59,7 +61,21 @@ function displayResult(searchType, data){
         }
         $("#search-result").trigger("create");
     }else{
-
+        if(data.length != 0){
+            $("#search-result").html("");
+        }
+        for(var i = 0; i < data.length; i++){
+            var div =   "<div data-role='collapsible' data-theme='b' data-collapsed='true' data-expanded-icon='carat-u' data-collapsed-icon='carat-d'>"
+            div +=       "<h3><div class='ui-grid-b' align='center'>";
+            div +=      "<div class='ui-block-a'>"+data[i].getTime()+"</div>";
+            div +=      "<div class='ui-block-b'>"+data[i].getPlatform()+"</div>";
+            div +=      "<div class='ui-block-c'>"+data[i].getArrival().getName()+"</div>";
+            div +=      "</div></h3><ul data-role='listview'>";
+            div +=      "<li>From <strong>"+data[i].getOrigin().getName()+"</strong></li>";
+            div +=      "</ul></div>";
+            $("#search-result").append(div);
+        }
+        $("#search-result").trigger("create");
     }
 }
 
@@ -106,14 +122,23 @@ function searchSetHeader(searchType){
     switch (searchType){
         case 1:
             $("#search-header").html("");
-            $("#search-header").append("<div class='ui-block-a'>Arrival time</div>");
-            $("#search-header").append("<div class='ui-block-b'>Platform</div>");
-            $("#search-header").append("<div class='ui-block-c'>Departure time<div>");
-            $("#search-header").append("<div class='ui-block-d'>Final destination</div>");
+            $("#search-header").append("<div class='ui-grid-c' align='right' id='search-header-content'>");
+            $("#search-header-content").append("<div class='ui-block-a'>Arrival time</div>");
+            $("#search-header-content").append("<div class='ui-block-b'>Platform</div>");
+            $("#search-header-content").append("<div class='ui-block-c'>Departure time<div>");
+            $("#search-header-content").append("<div class='ui-block-d'>Final destination</div>");
+            $("#search-header").append("</div>");
+            $("#search-header").trigger("create");
             break;
 
         case 2:
-            $("#search-title").html("<strong>"+searchDeparture+"</strong> to <strong>"+searchArrival+"</strong>");
+            $("#search-header").html("");
+            $("#search-header").append("<div class='ui-grid-b' align='center' id='search-header-content'>");
+            $("#search-header-content").append("<div class='ui-block-a'>Departure time</div>");
+            $("#search-header-content").append("<div class='ui-block-b'>Platform<div>");
+            $("#search-header-content").append("<div class='ui-block-c'>Final destination</div>");
+            $("#search-header").append("</div>");
+            $("#search-header").trigger("create");
             break;
     }
 }
