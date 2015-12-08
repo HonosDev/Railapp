@@ -18,7 +18,6 @@ function performSearch(typeOfSearch){
     var s_arrival   = new Station($("#station-arrival").val(), stationToCode($("#station-arrival").val()));
     var s_date      = $("#travel-date").val();
     var s_time      = $("#travel-time").val();
-
     switch (typeOfSearch){
         case "1":
             searchSetTitle(1, s_depart.getName());

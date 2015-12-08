@@ -18,7 +18,6 @@ var domainurl 	= "http://transportapi.com/v3/uk/";
  * @author B00290473
  */
 function getTrain(departureStation, date, time, arrivalStation){
-
 	var searchType = 1;
 	/* Create the url api request depending on parameters */
 	var url;

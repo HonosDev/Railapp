@@ -4,19 +4,19 @@
 <head>
     <title>Rail-timetable App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/simple.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/simple.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> -->
 
 
     <script src="js/model.js"></script>
@@ -109,12 +109,13 @@
                     </div>
                     <div class="ui-block-b" style="width:65%;">
                         <input type="hidden" id="search-type" value="2">
-                        <a href="#search" id="search_connection" data-role="button" data-icon="arrow-r" data-iconpos="right" onclick="performSearch($('#search-type').val());" class="ui-icon-check ui-btn-icon-right">
+                        <a href="#page-search" id="search_connection" data-role="button" data-icon="arrow-r" data-iconpos="right" onclick="performSearch($('#search-type').val());" class="ui-icon-check ui-btn-icon-right">
                             Get connections!
                         </a>
                     </div>
                 </div>
             </div>
+        </div>
         </form>
         <!-- recent -->
         <div data-role="collapsible" data-theme="b" data-collapsed="true" data-expanded-icon="carat-u" data-collapsed-icon="carat-d">
@@ -139,7 +140,7 @@
 </div><!-- /page -->
 
 <!-- SEARCH RESULT PAGE -->
-<div data-role="page" id="search">
+<div data-role="page" id="page-search">
 
     <div data-role="header" data-position="fixed" role="banner">
         <a href="#" data-rel="back" data-icon="back" data-iconpos="notext"></a>
