@@ -11,14 +11,24 @@
  *
  * performSearch() - Launch a research identificated by a type.
  * This function will call the transport API library (api.js) to get results linked to the search.
- * @author B00290473
+ * Also it will save the data from the search as a recent in the localStorage.
+ * @author B00290473, B00294525
  */
 function performSearch(typeOfSearch){
-    //display loader    fadeIn()
+    createLoader(); //function call via console works fine, but does not get triggered/resets when new page loads
+    
     var s_depart    = new Station($("#station-departure").val(), stationToCode($("#station-departure").val()));
     var s_arrival   = new Station($("#station-arrival").val(), stationToCode($("#station-arrival").val()));
     var s_date      = $("#travel-date").val();
     var s_time      = $("#travel-time").val();
+    
+    //create favorite for recents
+    var recent = new Favorite(typeOfSearch,s_depart,s_arrival, s_date);
+    var recents = JSON.parse(localStorage["recents"]);
+    //TODO limit recents to 5 entries and move up
+    recents.push(recent);
+    localStorage["recents"] = JSON.stringify(recents);
+    
     switch (typeOfSearch){
         case "1":
             searchSetTitle(1, s_depart.getName());
@@ -62,13 +72,13 @@ function displayResult(searchType, data){
             $("#search-result").append(div);
         }
         $("#search-result").trigger("create");
-        //hide loader
+        hideLoader();
     }else{
         if(data.length != 0){
             $("#search-result").html("");
         }
         for(var i = 0; i < data.length; i++){
-            var div =   "<div data-role='collapsible' data-theme='b' data-collapsed='true' data-expanded-icon='carat-u' data-collapsed-icon='carat-d'>"
+            var div =   "<div data-role='collapsible' data-theme='b' data-collapsed='true' data-expanded-icon='carat-u' data-collapsed-icon='carat-d'>";
             div +=       "<h3><div class='ui-grid-b' align='center'>";
             div +=      "<div class='ui-block-a'>"+data[i].getTime()+"</div>";
             div +=      "<div class='ui-block-b'>"+data[i].getPlatform()+"</div>";
@@ -79,7 +89,7 @@ function displayResult(searchType, data){
             $("#search-result").append(div);
         }
         $("#search-result").trigger("create");
-        //hide loader
+        hideLoader();
     }
 }
 
@@ -145,11 +155,24 @@ function searchSetHeader(searchType){
 /**
  * resetForm() - Search form will get reseted. All field will be blank except date and time.
  * In fact, we will call date and time initial function to put the actual date and time informations
- * @author B00290473
+ * @author B00290473, B00294525
  */
 function resetForm(){
     $('#search')[0].reset();
     setSearchDate();
+    $("#station-departure").val("");
+    $("#station-arrival").val("");
+}
+
+/**
+ * This small function switches the content of both station inputs.
+ * @author B00294525
+ */
+function switchStations(){
+    var dep = $("#station-departure").val();
+    var arr = $("#station-arrival").val();
+    $("#station-departure").val(arr);
+    $("#station-arrival").val(dep);
 }
 
 /**
@@ -201,4 +224,38 @@ function searchFavorite(type, departure, arrival){
    $('#station-departure').val(departure);
    $('#station-arrival').val(arrival);
    performSearch(type.toString());
+}
+
+/**
+ * createLoader - creates the loader which is visible while we wait for the feeddata to arrive.
+ * @author B00294525
+ */
+function createLoader(){
+    $.mobile.loading("show", {
+       text: "loading connections",
+       textVisible: true,
+       theme: "b",
+       html: ""
+    });
+}
+
+/**
+ * hideLoader - hides the loader.
+ * @author B00294525
+ */
+function hideLoader(){
+    $.mobile.loading("hide");
+}
+
+/**
+ * loadRecents - loads the data of recent searches
+ * @author B00294525
+ */
+function loadRecents(){
+    //create favorite for recents
+    var recents = JSON.parse(localStorage["recents"]);
+    
+    for (i=0; i<recents.length;i++) {
+        //TODO transform Favorite objects into collapsible view
+    }
 }

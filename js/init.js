@@ -65,14 +65,12 @@ function init() {
         localStorage["favorites"] = JSON.stringify(favorites);
     }
     
+    /**
+     * init of the recent-search array, if non existent
+     */
+    if (!localStorage.getItem("recents")){
+        var recents = [];
+        localStorage["recents"] = JSON.stringify(recents);
+    }
     
 } /* INIT FUNCTION END */
-
-
-/**
- * This small function reenables the list of stations for the search.
- * @author b00294525
- */
-function listshow(){
-    $("#station-list").css("display","");
-}
