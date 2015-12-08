@@ -14,6 +14,7 @@
  * @author B00290473
  */
 function performSearch(typeOfSearch){
+    //display loader    fadeIn()
     var s_depart    = new Station($("#station-departure").val(), stationToCode($("#station-departure").val()));
     var s_arrival   = new Station($("#station-arrival").val(), stationToCode($("#station-arrival").val()));
     var s_date      = $("#travel-date").val();
@@ -59,6 +60,7 @@ function displayResult(searchType, data){
             $("#search-result").append(div);
         }
         $("#search-result").trigger("create");
+        //hide loader
     }else{
         if(data.length != 0){
             $("#search-result").html("");
@@ -75,6 +77,7 @@ function displayResult(searchType, data){
             $("#search-result").append(div);
         }
         $("#search-result").trigger("create");
+        //hide loader
     }
 }
 
@@ -99,16 +102,16 @@ function switchSearchForm(searchType){
 /**
  * setTitle() - Search method that will change the html content of the <h3> with the id 'search-title'
  * We create the title using search informations and then just changing the html using jQuery
- * @author B00290473
+ * @author B00290473, B00294525
  */
 function searchSetTitle(searchType, searchDeparture, searchArrival){
     switch (searchType){
         case 1:
-            $("#search-title").html("Departures from <strong>"+searchDeparture+"</strong>");
+            $("#search-title").html('Departures from <strong id="start">'+searchDeparture+"</strong>");
             break;
 
         case 2:
-            $("#search-title").html("<strong>"+searchDeparture+"</strong> to <strong>"+searchArrival+"</strong>");
+            $("#search-title").html('<strong id="start">'+searchDeparture+'</strong> to <strong  id="destination">'+searchArrival+"</strong>");
             break;
     }
 }
@@ -145,4 +148,17 @@ function searchSetHeader(searchType){
 function resetForm(){
     $('#search')[0].reset();
     setSearchDate();
+}
+
+/**
+ * addFavorite() - adds the currents connection to the favorites
+ * @author B00294525
+ */
+function addFavorite(){
+    var type, dest;
+    if ($('#target')){type=2;} else {type=1;}
+    if ($('#destination')){dest=$('#destination').text();} else {dest=="All destinations"}
+    
+    return new Favorite(type,$('#start').text(),dest, new Date());
+    //TODO instead of return add to localStorage favorite-list
 }

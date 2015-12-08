@@ -51,14 +51,14 @@ var Station = function(s_name, s_code){
 }
 
 /**
- * Favorit - Object Definition
+ * Favorite - Object Definition
  * @author B00290473
- * @param int type This is the type of the favorit (describ the type os search made for this)
+ * @param int type This is the type of the favorit (describ the type of search made for this)
  * @param string f_departure This is the departure station store as a favorit
  * @param string f_arrival This is the arrival station store as a favorit
  * @param date f_time This is the last time the favorit has been used
  */
-var Favorit = function(f_type, f_departure, f_arrival, f_time){
+var Favorite = function(f_type, f_departure, f_arrival, f_time){
 	this.f_type = f_type;
 	this.f_departure = f_departure;
 	this.f_arrival = f_arrival;
@@ -225,54 +225,54 @@ Station.prototype.toString = function() {
 
 
 /**
- * Favorit OBJECT
+ * Favorite OBJECT
  * getType() - This method return the type of the search (which is the king of search made by the user)
  * VALUE : 1 = FROM, 2 = FROM/TO
  * @author B00290473
  * @return String
  */
-Favorit.prototype.getType = function() {
+Favorite.prototype.getType = function() {
 	return this.f_type;
 };
 
 /**
- * Favorit OBJECT
+ * Favorite OBJECT
  * getDeparture() - This method return the departure station stored in the favorit
  * @author B00290473
  * @return String
  */
-Favorit.prototype.getDeparture = function() {
+Favorite.prototype.getDeparture = function() {
 	return this.f_departure;
 };
 
 /**
- * Favorit OBJECT
+ * Favorite OBJECT
  * getArrival() - This method return the arrival station stored in the favorit
  * @author B00290473
  * @return String
  */
-Favorit.prototype.getArrival = function() {
+Favorite.prototype.getArrival = function() {
 	return this.f_arrival;
 };
 
 /**
- * Favorit OBJECT
+ * Favorite OBJECT
  * getDate() - This method return the date stored in the favorit as a string
  * @author B00290473
  * @return String
  */
-Favorit.prototype.getDate = function() {
+Favorite.prototype.getDate = function() {
 	return this.f_time;
 };
 
 
 /**
- * Favorit OBJECT
+ * Favorite OBJECT
  * toString() - This method return a Favorit toString in the javascript console 
  * @author B00290473
  * @return String
  */
-Favorit.prototype.toString = function() {
+Favorite.prototype.toString = function() {
 	return console.log("{OBJECT} Favorit ['f_type' => "+this.f_type+", 'f_departure' => "+this.f_departure+", 'f_arrival' => "+this.f_arrival+", 'f_time' => "+this.f_time+"]");
 };
 
