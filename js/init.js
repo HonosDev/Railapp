@@ -57,9 +57,22 @@ function init() {
         $("#station-list").css("display","none");
     });
     
-    $("#station-departure").keydown(
-        function(e){$("#station-list").css("display","");
-    });   
+    /**
+     * init of the favorites array, if non existent
+     */
+    if (!localStorage.getItem("favorites")){
+        var favorites = [];
+        localStorage["favorites"] = JSON.stringify(favorites);
+    }
     
     
 } /* INIT FUNCTION END */
+
+
+/**
+ * This small function reenables the list of stations for the search.
+ * @author b00294525
+ */
+function listshow(){
+    $("#station-list").css("display","");
+}

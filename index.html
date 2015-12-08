@@ -46,7 +46,7 @@
         <heading>
             <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
             <h1 class="ui-title">RailApp </h1>
-            <a href="#" id="trafic-alert" data-role="button" data-icon="alert" class="ui-link ui-btn-right ui-btn ui-icon-alert ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
+            <a href="#" data-rel="back" data-role="button" data-icon="back" class="ui-link ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
         </heading>
     </div>
     <div data-role="content">
@@ -65,7 +65,7 @@
                         <div class="ui-grid-a">
                             <div class="ui-block-a" style="width:85%">
                                 <label for="station-departure" class="ui-hidden-accessible">Departure station:</label>
-                                <input type="search" name="station-departure" id="station-departure" placeholder="Departure station" value="">
+                                <input type="search" name="station-departure" id="station-departure" placeholder="Departure station" value="Paisley Gilmour Street" onkeydown="listshow()">
                             </div>
                             <div class="ui-block-b" style="width:10%;padding-left:2%;">
                                 <a href="#" data-role="button" data-icon="location" data-iconpos="notext" class="ui-icon-location ui-btn-icon-notext"></a>
@@ -96,7 +96,7 @@
                 <div class="ui-grid-a ui-responsive">
                     <div class="ui-block-a">
                         <label for="station-arrival" class="ui-hidden-accessible">Arrival station:</label>
-                        <input type="search" name="station-arrival" id="station-arrival" placeholder="Arrival station" value="">
+                        <input type="search" name="station-arrival" id="station-arrival" placeholder="Arrival station" value="Glasgow Central">
                     </div>
                 </div>
             <!-- buttons -->
@@ -147,7 +147,7 @@
         <h1 class="ui-title">Search Results</h1>
     </div><!-- /header -->
 
-    <div data-role="content">
+    <div data-role="content" id="page-search-content">
         <div class="ui-corner-all custom-corners">
             <div class="ui-bar ui-bar-a">
                 <h3 id="search-title"></h3>
@@ -173,7 +173,7 @@
         <div data-role="navbar" data-iconpos="left">
             <ul>
                 <li><a href="#" data-icon="minus">Earlier</a></li>
-                <li><a href="#" data-icon="star">+ Favorite</a></li>
+                <li><a href="#" data-icon="star" onclick="addFavorite()">+ Favorite</a></li>
                 <li><a href="#" data-icon="plus">Later</a></li>
             </ul>
         </div><!-- /navbar -->
@@ -198,15 +198,14 @@
         <heading>
             <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
             <h1 class="ui-title">Favorites</h1>
+            <a href="#" data-rel="back" data-role="button" data-icon="back" class="ui-link ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
         </heading>
     </div><!-- /header -->
 
     <div data-role="content">
-        <ul data-role="listview">
-            <li class="ui-btn ui-btn-icon-right ui-li ui-li-has-icon ui-btn-up-c">
-                Paisley - Glasgow
-                <a href="#" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-icon-delete ui-btn-icon-notext"></a>
-            </li>
+        <button onclick="listFavorites();">load Favorites</button>
+        <br />
+        <ul id="favlist" data-role="listview">
         </ul>
     </div><!-- /content -->
 
@@ -233,6 +232,7 @@
         <heading>
             <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
             <h1 class="ui-title">Alarms</h1>
+            <a href="#" data-rel="back" data-role="button" data-icon="back" class="ui-link ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
         </heading>
     </div><!-- /header -->
 
@@ -300,6 +300,7 @@
         <heading>
             <a href="#menu_panel" id="options" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-link ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-shadow ui-corner-all" role="button"></a>
             <h1 class="ui-title">Settings</h1>
+            <a href="#" data-rel="back" data-role="button" data-icon="back" class="ui-link ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-iconpo="notext" role="button"></a>
         </heading>
     </div><!-- /header -->
 

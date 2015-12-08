@@ -24,12 +24,14 @@ function performSearch(typeOfSearch){
             searchSetTitle(1, s_depart.getName());
             searchSetHeader(1);
             getTrain(s_depart, s_date, s_time);
+            console.log('Search 1');
             break;
 
         case "2":
             searchSetTitle(2, s_depart.getName(), s_arrival.getName());
             searchSetHeader(2);
             getTrain(s_depart, s_date, s_time, s_arrival);
+            console.log('Search 2');
             break;
 
         default:
@@ -159,6 +161,44 @@ function addFavorite(){
     if ($('#target')){type=2;} else {type=1;}
     if ($('#destination')){dest=$('#destination').text();} else {dest=="All destinations"}
     
-    return new Favorite(type,$('#start').text(),dest, new Date());
-    //TODO instead of return add to localStorage favorite-list
+    var fav = new Favorite(type,$('#start').text(),dest, new Date());
+    var favorites = JSON.parse(localStorage["favorites"]);
+    favorites.push(fav);
+    localStorage["favorites"] = JSON.stringify(favorites);
+    
+    var info= '<div class="ui-body" id="favoriteAdded" style="margin-bottom:2%; border-style:double; border-color:green;background:lightgreen;"><p style="color:green;text-align:center;">Favorite added!</p></div>';
+    $('#page-search-content').prepend(info);
+}
+
+/**
+ * listFavorites() - reads stored favorites from the localStorage and displays them in a listview.
+ * @author B00294525
+ */
+function listFavorites(){
+    var favorites = JSON.parse(localStorage["favorites"]);
+    var favlist = $('#favlist');
+    
+    for (i = 0; i<favorites.length; i++){
+        var li = $('<li></li>');
+        var a = $('<a></a>');
+        
+        a.attr("onclick", 'searchFavorite('+favorites[i].f_type+',"'+favorites[i].f_departure+'","'+favorites[i].f_arrival+'");');
+        a.attr("href", "#page-search");
+        a.text(favorites[i].f_departure+" - "+favorites[i].f_arrival);
+        
+        li.append(a);
+        favlist.append(li);
+    }
+    
+    if ($('#favlist li')) {favlist.listview( "refresh" );}
+}
+
+/**
+ * searchFavorite() - triggers a new search for a favorite.
+ * @author B00294525
+ */
+function searchFavorite(type, departure, arrival){
+   $('#station-departure').val(departure);
+   $('#station-arrival').val(arrival);
+   performSearch(type.toString());
 }
