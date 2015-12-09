@@ -42,7 +42,6 @@ function init() {
     /**
      * Initiate the autocompletion on search input
      */
-     console.log(stations);
     for(var row in stations){
         $("#station-list").append("<li id='"+stations[row]+"'>"+codeToStation(stations[row])+"</li>");
     }

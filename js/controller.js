@@ -66,9 +66,11 @@ function displayResult(searchType, data){
             div +=      "<div class='ui-block-b'>"+data[i].getPlatform()+"</div>";
             div +=      "<div class='ui-block-c'>"+data[i].getTime()+"</div>";
             div +=      "<div class='ui-block-d'>"+data[i].getArrival().getName()+"</div>";
-            div +=      "</div></h3><ul data-role='listview'>";
-            div +=      "<li>From <strong>"+data[i].getOrigin().getName()+"</strong></li>";
-            div +=      "</ul></div>";
+            div +=      "</div></h3><div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
+            div +=      "<div class='ui-grid-a'><div class='ui-block-a' style='width:60%;min-height:30px;'><b>Station Name</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Time</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Platform</b></div></div>"
+            div +=      "<div class='ui-grid-a'>";
+            getTrainInfos(data[i].getID());
+            div +=      "</div></div>";
             $("#search-result").append(div);
         }
         $("#search-result").trigger("create");
@@ -83,9 +85,11 @@ function displayResult(searchType, data){
             div +=      "<div class='ui-block-a'>"+data[i].getTime()+"</div>";
             div +=      "<div class='ui-block-b'>"+data[i].getPlatform()+"</div>";
             div +=      "<div class='ui-block-c'>"+data[i].getArrival().getName()+"</div>";
-            div +=      "</div></h3><ul data-role='listview'>";
-            div +=      "<li>From <strong>"+data[i].getOrigin().getName()+"</strong></li>";
-            div +=      "</ul></div>";
+            div +=      "</div></h3><div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
+            div +=      "<div class='ui-grid-a'><div class='ui-block-a' style='width:60%;min-height:30px;'><b>Station Name</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Time</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Platform</b></div></div>"
+            div +=      "<div class='ui-grid-a'>";
+            getTrainInfos(data[i].getID());
+            div +=      "</div></div>";
             $("#search-result").append(div);
         }
         $("#search-result").trigger("create");

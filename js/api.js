@@ -45,9 +45,32 @@ function getTrain(departureStation, date, time, arrivalStation){
 			}
 			var destination  = new Station(val['destination_name'], stationToCode(val['destination_name']));
 			var origin 		 = new Station(val['origin_name'], stationToCode(val['origin_name']));
-			var d = new Departure(departureStation, val['aimed_departure_time'], destination, val['platform'], val['aimed_arrival_time'], origin);
+			var d = new Departure(departureStation, val['aimed_departure_time'], destination, val['platform'], val['aimed_arrival_time'], origin, val['train_uid']);
 			departures.push(d);
 		});
 		displayResult(searchType, departures);
+	});
+}
+
+/**
+ * getTrainInfos() - Method getting informations
+ * @param String ID of the train
+ * @author B00290473
+ */
+function getTrainInfos(train_uid){
+	var url = domainurl+"train/service/train_uid:"+train_uid+"///timetable.json"+keyurl;
+
+	var infos = $.getJSON(url, function(data){
+		$.each(data['stops'], function(key, val){
+			if(val['aimed_arrival_time'] == null){
+				val['aimed_arrival_time'] = "-";
+			}
+			if(val['platform'] == null){
+				val['platform'] = "Unk";
+			}
+			$("#t-"+train_uid).append("<div class='ui-block-a' style='width:60%;min-height:30px;'>"+val['station_name']+"</div>");
+			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['aimed_arrival_time']+"</div>");
+			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['platform']+"</div>");
+		});
 	});
 }

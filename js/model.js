@@ -13,15 +13,17 @@
  * @param d_platform This is the platform the train is leaving from
  * @param d_aimed_time This is the arrival time of the train in the station
  * @param d_origin This is the origin station of the train
+ * @param d_id This is the id of the departure (usefull to get information using api.js method)
  * @author B00290473
  */
-var Departure = function(d_station, d_time, d_arrival, d_platform, d_aimed_time, d_origin){
+var Departure = function(d_station, d_time, d_arrival, d_platform, d_aimed_time, d_origin, d_id){
 	this.d_station = d_station;
 	this.d_time = d_time;
 	this.d_arrival = d_arrival;
 	this.d_platform = d_platform;
 	this.d_aimed_time = d_aimed_time;
 	this.d_origin = d_origin; 
+	this.d_id = d_id; 
 }
 
 /**
@@ -129,6 +131,16 @@ Departure.prototype.getAimedTime = function() {
  */
 Departure.prototype.getOrigin = function() {
 	return this.d_origin;
+};
+
+/**
+ * Departure OBJECT
+ * getID() - This method return the id of the train
+ * @author B00294525
+ * @return String
+ */
+Departure.prototype.getID = function() {
+	return this.d_id;
 };
 
 /**
