@@ -156,6 +156,15 @@ function searchSetHeader(searchType){
             break;
     }
 }
+
+/**
+ * setDepartureStation() - This function allow you to set the departure station by editing input value
+ * @param String station This is the new station name
+ */
+function setDepartureStation(station){
+    $("#station-departure").val(station);
+}
+
 /**
  * resetForm() - Search form will get reseted. All field will be blank except date and time.
  * In fact, we will call date and time initial function to put the actual date and time informations
@@ -261,5 +270,49 @@ function loadRecents(){
     
     for (i=0; i<recents.length;i++) {
         //TODO transform Favorite objects into collapsible view
+    }
+}
+
+/**
+ * initGeolocation() - This functin will allow us to get the user geolocation
+ * @author B00290473
+ */
+function initGeolocation() {
+    navigator.geolocation.getCurrentPosition(handle_initGeolocation, handle_geoError);
+}
+
+/**
+ * handle_initGeolocation() - This handler function initiate the Geolocation and call the get station method using geo position
+ * @param Geoposition geoPosition This is the variable called back from the getCurrentPosition method called by initGeolocation()
+ * @author B00290473 
+ */
+function handle_initGeolocation(geoPosition){
+    console.log(geoPosition);
+    console.log('Lat: '+geoPosition.coords.latitude+ '\nLon: '+geoPosition.coords.longitude);
+    getStationByGeo(geoPosition.coords.latitude, geoPosition.coords.longitude, 5);
+}
+
+/**
+ * handle_geoError() - This handler function is used to identificate any errors coming from the Geolocation initiation
+ * @param Error geoError This variable is calledback from the getCurrentPosition method 
+ * @author B00290473
+ */
+function handle_geoError(geoError){
+    switch (geoError){
+        case error.PERMISSION_DENIED: 
+            console;LOG("GEO ERROR : Permission denied");
+        break;
+ 
+        case error.POSITION_UNAVAILABLE: 
+            console.log("GEO ERROR : Position unavailable");
+        break;
+ 
+        case error.TIMEOUT: 
+            console.log("GEO ERROR : Request timeout");
+        break;
+ 
+        default: 
+            console.log("GEO ERROR : Unknown");
+        break;
     }
 }

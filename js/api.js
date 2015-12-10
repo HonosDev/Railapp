@@ -72,5 +72,27 @@ function getTrainInfos(train_uid){
 			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['aimed_arrival_time']+"</div>");
 			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['platform']+"</div>");
 		});
+		$("#t-"+train_uid).append("<a class='ui-btn ui-btn-c ui-shadow' style='background: #3A4895;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;'>Get alarmed</a>");
 	});
+}
+
+/**
+ * locateStation() - This function will find all stations around the user localisation
+ * @param int lon This is the longitude
+ * @param int lat This is the latitude
+ * @param int count This define how many station results will be displayed
+ * @author B00290473
+ */
+function getStationByGeo(lat, lon, count){
+	//http://transportapi.com/v3/uk/train/stations/near.json?
+	$("#listOfStations").html("");
+	var url = domainurl+"train/stations/near.json"+keyurl+"&lat="+lat+"&lon="+lon+"&rpp="+count;
+	console.log(url);
+	var stations = $.getJSON(url, function(data){
+		$.each(data['stations'], function(key, val){
+			$("#listOfStations").append("<li><a data-rel='back' data-transition='flow' onclick=\"setDepartureStation('"+val['name']+"')\"><strong>"+val['name']+"</strong> : "+val['distance']+"m </a></li>")
+		});
+		$("#listOfStations").listview("refresh");
+	});
+
 }

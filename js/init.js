@@ -43,17 +43,23 @@ function init() {
      * Initiate the autocompletion on search input
      */
     for(var row in stations){
-        $("#station-list").append("<li id='"+stations[row]+"'>"+codeToStation(stations[row])+"</li>");
+        $("#station-list-departure").append("<li id='"+stations[row]+"'>"+codeToStation(stations[row])+"</li>");
+        $("#station-list-arrival").append("<li id='"+stations[row]+"'>"+codeToStation(stations[row])+"</li>");
     }
     
     /**
      * Changes the input to the chosen stationname and hides/displays the stationlist
-     * @author B00294525
+     * @author B00294525, B00290473
      */
-    $("#station-list li").click(function(e){
+    $("#station-list-departure li").click(function(e){
         console.log($(this).attr('id'));
         $("#station-departure").val($(this).text());
-        $("#station-list").css("display","none");
+        $("#station-list-departure").css("display","none");
+    });
+    $("#station-list-arrival li").click(function(e){
+        console.log($(this).attr('id'));
+        $("#station-arrival").val($(this).text());
+        $("#station-list-arrival").css("display","none");
     });
     
     /**
@@ -72,4 +78,10 @@ function init() {
         localStorage["recents"] = JSON.stringify(recents);
     }
     
+    /** 
+     * Let's init the geolocation 
+     */
+     jQuery(window).ready(function(){
+            jQuery(".geolocation-init").click(initGeolocation);
+        });
 } /* INIT FUNCTION END */

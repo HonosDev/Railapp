@@ -31,6 +31,17 @@
 <!-- MAIN PAGE -->
 <div data-role="page" id="main">
 
+    <div data-role="popup" id="GeoStations" data-overlay-theme="a" data-theme="b" data-dismissible="true" style="max-width: 400px">
+        <div data-role="header" data-theme="b">
+            <h1>Nearby stations...</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <ul data-role="listview" id="listOfStations">
+                <li><a href="#">Sorry, no stations founded</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- panel START-->
     <div data-role="panel" id="menu_panel">
         <ul data-role="listview">
@@ -68,13 +79,13 @@
                                 <input type="search" name="station-departure" id="station-departure" placeholder="Departure station" value="Paisley Gilmour Street" onkeydown="listshow()">
                             </div>
                             <div class="ui-block-b" style="width:10%;padding-left:2%;">
-                                <a href="#" data-role="button" data-icon="location" data-iconpos="notext" class="ui-icon-location ui-btn-icon-notext"></a>
+                                <a href="#GeoStations" data-rel="popup" data-position-to="window" data-transition="flow" data-role="button" data-icon="location" data-iconpos="notext" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-location ui-btn-icon-notext geolocation-init"></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="list">
-                   <ul id="station-list" data-filter-reveal="true" data-theme="b" data-role="listview" data-inset="true" data-filter="true" data-input="#station-departure">
+                   <ul id="station-list-departure" data-filter-reveal="true" data-theme="b" data-role="listview" data-inset="true" data-filter="true" data-input="#station-departure">
 
                    </ul>
                 </div>
@@ -98,6 +109,11 @@
                         <label for="station-arrival" class="ui-hidden-accessible">Arrival station:</label>
                         <input type="search" name="station-arrival" id="station-arrival" placeholder="Arrival station" value="Glasgow Central">
                     </div>
+                </div>
+                <div class="list">
+                   <ul id="station-list-arrival" data-filter-reveal="true" data-theme="b" data-role="listview" data-inset="true" data-filter="true" data-input="#station-arrival">
+
+                   </ul>
                 </div>
             <!-- buttons -->
                 <div class="ui-grid-a">
