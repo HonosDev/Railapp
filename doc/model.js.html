@@ -116,6 +116,21 @@ var Recent = function(r_type, r_departure, r_arrival, r_day, r_time){
 	this.r_time = r_time;
 }
 
+/**
+ * Alarm - Object Definition
+ * @param al_time Time of the train departure
+ * @param al_departure Departure station
+ * @param al_arrival Arrival station
+ * @param al_platform Platform where the train is arriving and will leave
+ * @author B00290473
+ */
+var Alarm = function(al_time, al_departure, al_arrival, al_platform){
+    this.al_time = al_time;
+    this.al_departure = al_departure;
+    this.al_arrival = al_arrival;
+    this.al_platform = al_platform;
+}
+
 /* 
  * -------------------------------
  * OBJECT PROTOTYPE IMPLEMENTATION
@@ -337,6 +352,68 @@ Favorite.prototype.toString = function() {
 	return console.log("{OBJECT} Favorit ['f_type' => "+this.f_type+", 'f_departure' => "+this.f_departure+", 'f_arrival' => "+this.f_arrival+", 'f_time' => "+this.f_time+"]");
 };
 
+
+
+/**
+ * Alarm OBJECT
+ * getTime() - This method return the time of the alarm (time of the departure)
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getTime = function(){
+    return this.al_time;
+}
+
+/**
+ * Alarm OBJECT
+ * getDeparture() - This method return the departure station of the train alarmed
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getDeparture = function(){
+    return this.al_departure;
+}
+
+/**
+ * Alarm OBJECT
+ * getArrival() - This method return the arrival station of the train alarmed
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getArrival = function(){
+    return this.al_arrival;
+}
+
+/**
+ * Alarm OBJECT
+ * getPlatform() - This method return the platform of the alarmed train
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getPlatform = function(){
+    return this.al_platform;
+}
+
+
+/**
+ * Settings 
+ */ 
+var setting_notif_enabled = true;
+
+
+/**
+ * notificationStatement() - Allow the user to enable or disable notification system
+ * @author B00290473
+ */
+function changeNotificationStatement(){
+    if(setting_notif_enabled){
+        localStorage["settings_notif"] = false;
+        setting_notif_enabled = false;
+    }else{
+        localStorage["settings_notif"] = true;
+        setting_notif_enabled = true;
+    }
+}
 
 /* 
  * --------------
@@ -757,13 +834,13 @@ function codeToStation(code){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#ApiUnitTest">ApiUnitTest</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlarm">addAlarm</a></li><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#Alarm">Alarm</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#changeNotificationStatement">changeNotificationStatement</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#deleteAlarm">deleteAlarm</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getNotifStatus">getNotifStatus</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadAlarms">loadAlarms</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#setting_notif_enabled">setting_notif_enabled</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 05:52:27 GMT+0100 (Paris, Madrid)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 17:29:21 GMT+0100 (Paris, Madrid)
 </footer>
 
 <script> prettyPrint(); </script>

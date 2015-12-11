@@ -164,10 +164,154 @@
 
 
         
+            
+<h4 class="name" id="setting_notif_enabled"><span class="type-signature"></span>setting_notif_enabled<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Settings
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="model.js.html">model.js</a>, <a href="model.js.html#line373">line 373</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
     
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="addAlarm"><span class="type-signature"></span>addAlarm<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    addAlarm() - Will add an alarm on a given train
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line270">line 270</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
             
@@ -232,7 +376,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line205">line 205</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line201">line 201</a>
     </li></ul></dd>
     
 
@@ -457,7 +601,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line286">line 286</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line331">line 331</a>
     </li></ul></dd>
     
 
@@ -488,14 +632,201 @@
 
     
 
-    <h4 class="name" id="ApiUnitTest"><span class="type-signature"></span>ApiUnitTest<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Alarm"><span class="type-signature"></span>Alarm<span class="signature">(al_time, al_departure, al_arrival, al_platform)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Launch unit tests on API methods (in api.js)
+    Alarm - Object Definition
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>al_time</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Time of the train departure</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>al_departure</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Departure station</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>al_arrival</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Arrival station</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>al_platform</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Platform where the train is arriving and will leave</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>B00290473</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="model.js.html">model.js</a>, <a href="model.js.html#line99">line 99</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="changeNotificationStatement"><span class="type-signature"></span>changeNotificationStatement<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    notificationStatement() - Allow the user to enable or disable notification system
 </div>
 
 
@@ -529,6 +860,13 @@
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>B00290473</li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -539,7 +877,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="unittest.js.html">unittest.js</a>, <a href="unittest.js.html#line61">line 61</a>
+        <a href="model.js.html">model.js</a>, <a href="model.js.html#line380">line 380</a>
     </li></ul></dd>
     
 
@@ -621,7 +959,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="model.js.html">model.js</a>, <a href="model.js.html#line716">line 716</a>
+        <a href="model.js.html">model.js</a>, <a href="model.js.html#line793">line 793</a>
     </li></ul></dd>
     
 
@@ -710,7 +1048,140 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line260">line 260</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line257">line 257</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deleteAlarm"><span class="type-signature"></span>deleteAlarm<span class="signature">(i)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    delteAlarm - deletes one alarm from the list
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>i</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">index of the alarm in alarms</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>B00294525</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line304">line 304</a>
     </li></ul></dd>
     
 
@@ -871,7 +1342,96 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line56">line 56</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getNotifStatus"><span class="type-signature"></span>getNotifStatus<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    getNotifStatus() - check the notification setting status to edit the selected item depending on the status
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>B00290473</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line429">line 429</a>
     </li></ul></dd>
     
 
@@ -1055,7 +1615,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.js.html">api.js</a>, <a href="api.js.html#line86">line 86</a>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line92">line 92</a>
     </li></ul></dd>
     
 
@@ -1400,7 +1960,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api.js.html">api.js</a>, <a href="api.js.html#line60">line 60</a>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -1538,7 +2098,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line371">line 371</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line405">line 405</a>
     </li></ul></dd>
     
 
@@ -1676,7 +2236,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line360">line 360</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line394">line 394</a>
     </li></ul></dd>
     
 
@@ -1765,7 +2325,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line273">line 273</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -1854,7 +2414,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line351">line 351</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line385">line 385</a>
     </li></ul></dd>
     
 
@@ -1943,7 +2503,96 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line224">line 224</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line220">line 220</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="loadAlarms"><span class="type-signature"></span>loadAlarms<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    loadAlarms - loads the saved alarms
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>B00294525</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -2032,7 +2681,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line304">line 304</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line349">line 349</a>
     </li></ul></dd>
     
 
@@ -2070,7 +2719,7 @@
 
 
 <div class="description">
-    Launch unit tests on MODEL methods (in model.js)
+    unittest.js - This files will contains all nit test we will do on the app
 </div>
 
 
@@ -2104,6 +2753,13 @@
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>B00290473, B00294525</li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -2114,7 +2770,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="unittest.js.html">unittest.js</a>, <a href="unittest.js.html#line9">line 9</a>
+        <a href="unittest.js.html">unittest.js</a>, <a href="unittest.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -2601,7 +3257,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line183">line 183</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line179">line 179</a>
     </li></ul></dd>
     
 
@@ -2785,7 +3441,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line250">line 250</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line247">line 247</a>
     </li></ul></dd>
     
 
@@ -2816,7 +3472,7 @@
 
     
 
-    <h4 class="name" id="searchRecent"><span class="type-signature"></span>searchRecent<span class="signature">(departure, date, time, arrival)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="searchRecent"><span class="type-signature"></span>searchRecent<span class="signature">(i)</span><span class="type-signature"></span></h4>
 
     
 
@@ -2859,13 +3515,13 @@
 
         <tr>
             
-                <td class="name"><code>departure</code></td>
+                <td class="name"><code>i</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Station.html">Station</a></span>
+<span class="param-type">int</span>
 
 
             
@@ -2875,76 +3531,7 @@
 
             
 
-            <td class="description last">departure station as station object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">date</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>time</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>arrival</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Station.html">Station</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">arrival station as station object</td>
+            <td class="description last">index: position of the recent in the recents array</td>
         </tr>
 
     
@@ -2978,7 +3565,7 @@
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>B00294525, B00290473</li>
+            <li>B00294525</li>
         </ul>
     </dd>
     
@@ -2992,7 +3579,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line332">line 332</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line373">line 373</a>
     </li></ul></dd>
     
 
@@ -3130,7 +3717,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line144">line 144</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line141">line 141</a>
     </li></ul></dd>
     
 
@@ -3314,7 +3901,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line126">line 126</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -3452,7 +4039,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line174">line 174</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line170">line 170</a>
     </li></ul></dd>
     
 
@@ -3534,7 +4121,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="model.js.html">model.js</a>, <a href="model.js.html#line705">line 705</a>
+        <a href="model.js.html">model.js</a>, <a href="model.js.html#line782">line 782</a>
     </li></ul></dd>
     
 
@@ -3672,7 +4259,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line104">line 104</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line102">line 102</a>
     </li></ul></dd>
     
 
@@ -3761,7 +4348,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line194">line 194</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line190">line 190</a>
     </li></ul></dd>
     
 
@@ -3803,13 +4390,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#ApiUnitTest">ApiUnitTest</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlarm">addAlarm</a></li><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#Alarm">Alarm</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#changeNotificationStatement">changeNotificationStatement</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#deleteAlarm">deleteAlarm</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getNotifStatus">getNotifStatus</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadAlarms">loadAlarms</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#setting_notif_enabled">setting_notif_enabled</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 05:52:27 GMT+0100 (Paris, Madrid)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 17:29:21 GMT+0100 (Paris, Madrid)
 </footer>
 
 <script> prettyPrint(); </script>

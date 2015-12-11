@@ -6,14 +6,15 @@
 
 /**
  * Departure - Object Definition
+ * @constructor
  * @author B00290473, B00294525
- * @param station d_station This is the departure station code 
- * @param date d_time This is the departure date 
- * @param station d_arrival This is the arrival station code
- * @param d_platform This is the platform the train is leaving from
- * @param d_aimed_time This is the arrival time of the train in the station
- * @param d_origin This is the origin station of the train
- * @param d_id This is the id of the departure (usefull to get information using api.js method)
+ * @param {station} d_station This is the departure station code 
+ * @param {date} d_time This is the departure date 
+ * @param {station} d_arrival This is the arrival station code
+ * @param {string} d_platform This is the platform the train is leaving from
+ * @param {station} d_aimed_time This is the arrival time of the train in the station
+ * @param {station} d_origin This is the origin station of the train
+ * @param {string} d_id This is the id of the departure (usefull to get information using api.js method)
  * @author B00290473
  */
 var Departure = function(d_station, d_time, d_arrival, d_platform, d_aimed_time, d_origin, d_id){
@@ -28,11 +29,12 @@ var Departure = function(d_station, d_time, d_arrival, d_platform, d_aimed_time,
 
 /**
  * Arrival - Object Definition
+ * @constructor
  * @author B00290473, B00294525
- * @param station a_station This is the arrival station
- * @param date a_time Tis is the arrival date
- * @param station a_departure This is the departure station#
- * @param a_platform This is the platform the train is arriving on
+ * @param {station} a_station This is the arrival station
+ * @param {date} a_time Tis is the arrival date
+ * @param {station} a_departure This is the departure station#
+ * @param {string} a_platform This is the platform the train is arriving on
  */
 var Arrival = function(a_station, a_time, a_departure, a_platform){
 	this.a_station = a_station;
@@ -43,9 +45,10 @@ var Arrival = function(a_station, a_time, a_departure, a_platform){
 
 /**
  * Station - Object Definition 
+ * @constructor
  * @author B00290473
- * @param string s_name This is the full name of the station
- * @param string s_code This is the code of the station
+ * @param {string} s_name This is the full name of the station
+ * @param {string} s_code This is the code of the station
  */
 var Station = function(s_name, s_code){
 	this.s_name = s_name;
@@ -54,11 +57,12 @@ var Station = function(s_name, s_code){
 
 /**
  * Favorite - Object Definition
+ * @constructor
  * @author B00290473
- * @param int type This is the type of the favorit (describ the type of search made for this)
- * @param string f_departure This is the departure station store as a favorit
- * @param string f_arrival This is the arrival station store as a favorit
- * @param date f_time This is the last time the favorit has been used
+ * @param {int} type This is the type of the favorit (describ the type of search made for this)
+ * @param {string} f_departure This is the departure station store as a favorit
+ * @param {string} f_arrival This is the arrival station store as a favorit
+ * @param {date} f_time This is the last time the favorit has been used
  */
 var Favorite = function(f_type, f_departure, f_arrival, f_time){
 	this.f_type = f_type;
@@ -69,11 +73,12 @@ var Favorite = function(f_type, f_departure, f_arrival, f_time){
 
 /**
  * Recent - Object Definition
+ * @constructor
  * @author B00294525
- * @param int type This is the type of the favorit (describ the type of search made for this)
- * @param string r_departure This is the departure station store as a favorit
- * @param string r_arrival This is the arrival station store as a favorit
- * @param date r_time This is the last time the favorit has been used
+ * @param {int} type This is the type of the favorit (describ the type of search made for this)
+ * @param {string} r_departure This is the departure station store as a favorit
+ * @param {string} r_arrival This is the arrival station store as a favorit
+ * @param {date} r_time This is the last time the favorit has been used
  */
 var Recent = function(r_type, r_departure, r_arrival, r_day, r_time){
 	this.r_type = r_type;

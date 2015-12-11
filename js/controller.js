@@ -12,6 +12,7 @@
  * performSearch() - Launch a research identificated by a type.
  * This function will call the transport API library (api.js) to get results linked to the search.
  * Also it will save the data from the search as a recent in the localStorage.
+ * @param {int} typeOfSearch This is the number describing the type of search
  * @author B00290473, B00294525
  */
 function performSearch(typeOfSearch){
@@ -46,6 +47,9 @@ function performSearch(typeOfSearch){
 /**
  * displayResult() - Display results of a search
  * This method is called by the api.js file after a getjson request
+ * @param {int} searchType This is the number describing the type of search
+ * @param {Array} data This is all the data that have to be displayed
+ * @author B00290473
  */
 function displayResult(searchType, data){
     if(searchType == 1){
@@ -92,6 +96,7 @@ function displayResult(searchType, data){
 
 /**
  * switchSearchForm() - Method switching one type of search to an other by editing the form
+ * @param {int} searchType This is the number describing the type of search
  * @author B00290473
  */
 function switchSearchForm(searchType){
@@ -111,6 +116,9 @@ function switchSearchForm(searchType){
 /**
  * setTitle() - Search method that will change the html content of the <h3> with the id 'search-title'
  * We create the title using search informations and then just changing the html using jQuery
+ * @param {int} searchType This is the number describing the type of search
+ * @param {String} searchDeparture This is the name of the departure station
+ * @param {String} searchArrival This is the name of the arrival station
  * @author B00290473, B00294525
  */
 function searchSetTitle(searchType, searchDeparture, searchArrival){
@@ -125,6 +133,11 @@ function searchSetTitle(searchType, searchDeparture, searchArrival){
     }
 }
 
+/**
+ * searchSetHeader() - The function allow us to set the good header depending of the type of search which as been called
+ * @param {int} searchType This is the number describing the type of search
+ * @author B00290473
+ */
 function searchSetHeader(searchType){
     switch (searchType){
         case 1:
@@ -151,7 +164,8 @@ function searchSetHeader(searchType){
 
 /**
  * setDepartureStation() - This function allow you to set the departure station by editing input value
- * @param String station This is the new station name
+ * @param {String} station This is the new station name
+ * @author B00290473
  */
 function setDepartureStation(station){
     $("#station-departure").val(station);
@@ -225,10 +239,10 @@ function listFavorites(){
 
 /**
  * searchFavorite() - triggers a new search for a favorite.
- * @param type - type of search (from or from/to)
- * @param departure - Name of departure station
- * @param arrival - Name of arrival station
- * @author B00294525
+ * @param {int} type - type of search (from or from/to)
+ * @param {String} departure - Name of departure station
+ * @param {String} arrival - Name of arrival station
+ * @author B00294525, B00290473
  */
 function searchFavorite(type, departure, arrival){
    $('#station-departure').val(departure);
@@ -307,7 +321,12 @@ function hideLoader(){
 
 /**
  * addRecent - adds the search to the recents list and limits its size to five entries.
- * @author B00294525
+ * @param typeOfSearch
+ * @param {Station} s_depart Departure destation
+ * @param {Station} s_arrival Arrival station
+ * @param {date} s_date Date of the search
+ * @param {string} s_time Time fo the search
+ * @author B00294525, B00290473
  */
 function addRecent(typeOfSearch,s_depart,s_arrival, s_date, s_time){
     var recent = new Recent(typeOfSearch,s_depart,s_arrival, s_date, s_time);
@@ -347,7 +366,7 @@ function loadRecents(){
 
 /**
  * searchRecent() - triggers a new search for a favorite.
- * @param i - index: position of the recent in the recents array
+ * @param {int} i - index: position of the recent in the recents array
  * @author B00294525
  */
 // function searchRecent(departure,date,time,arrival){
@@ -369,7 +388,7 @@ function initGeolocation() {
 
 /**
  * handle_initGeolocation() - This handler function initiate the Geolocation and call the get station method using geo position
- * @param Geoposition geoPosition This is the variable called back from the getCurrentPosition method called by initGeolocation()
+ * @param {Geoposition} geoPosition This is the variable called back from the getCurrentPosition method called by initGeolocation()
  * @author B00290473 
  */
 function handle_initGeolocation(geoPosition){
@@ -380,7 +399,7 @@ function handle_initGeolocation(geoPosition){
 
 /**
  * handle_geoError() - This handler function is used to identificate any errors coming from the Geolocation initiation
- * @param Error geoError This variable is calledback from the getCurrentPosition method 
+ * @param {Error} geoError This variable is calledback from the getCurrentPosition method 
  * @author B00290473
  */
 function handle_geoError(geoError){

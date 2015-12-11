@@ -11,10 +11,10 @@ var domainurl 	= "http://transportapi.com/v3/uk/";
 
 /**
  * getTrain() - Method that getting train at a given station
- * @param Station departureStation 
- * @param String date String format 2014-11-20
- * @param String time String format 19:45
- * @param Station arrivalStation Must be an Arrival Object
+ * @param {Station} departureStation 
+ * @param {String} date String format 2014-11-20
+ * @param {String} time String format 19:45
+ * @param {Station} arrivalStation Must be an Arrival Object
  * @author B00290473
  */
 function getTrain(departureStation, date, time, arrivalStation){
@@ -56,7 +56,7 @@ function getTrain(departureStation, date, time, arrivalStation){
 
 /**
  * getTrainInfos() - Method getting informations
- * @param String ID of the train
+ * @param {String} train_uid ID of the train
  * @author B00290473
  */
 function getTrainInfos(train_uid, departure, arrival, time, platform){
@@ -84,9 +84,9 @@ $("#t-"+train_uid).append("<a class='ui-btn ui-btn-c ui-shadow' style='backgroun
 
 /**
  * locateStation() - This function will find all stations around the user localisation
- * @param int lon This is the longitude
- * @param int lat This is the latitude
- * @param int count This define how many station results will be displayed
+ * @param {int} lon This is the longitude
+ * @param {int} lat This is the latitude
+ * @param {int} count This define how many station results will be displayed
  * @author B00290473
  */
 function getStationByGeo(lat, lon, count){

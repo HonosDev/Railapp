@@ -44,8 +44,6 @@
  * @author B00290473, B00294525
  */
 function performSearch(typeOfSearch){
-    createLoader(); //function call via console works fine, but does not get triggered/resets when new page loads
-    
     var s_depart    = new Station($("#station-departure").val(), stationToCode($("#station-departure").val()));
     var s_arrival   = new Station($("#station-arrival").val(), stationToCode($("#station-arrival").val()));
     var s_date      = $("#travel-date").val();
@@ -96,7 +94,7 @@ function displayResult(searchType, data){
             div +=      "&lt;/div>&lt;/h3>&lt;div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
             div +=      "&lt;div class='ui-grid-a'>&lt;div class='ui-block-a' style='width:60%;min-height:30px;'>&lt;b>Station Name&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Time&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Platform&lt;/b>&lt;/div>&lt;/div>"
             div +=      "&lt;div class='ui-grid-a'>";
-            getTrainInfos(data[i].getID());
+            getTrainInfos(data[i].getID(), data[i].getStation().getName(), data[i].getArrival().getName(), data[i].getTime(), data[i].getPlatform());
             div +=      "&lt;/div>&lt;/div>";
             $("#search-result").append(div);
         }
@@ -115,7 +113,7 @@ function displayResult(searchType, data){
             div +=      "&lt;/div>&lt;/h3>&lt;div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
             div +=      "&lt;div class='ui-grid-a'>&lt;div class='ui-block-a' style='width:60%;min-height:30px;'>&lt;b>Station Name&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Time&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Platform&lt;/b>&lt;/div>&lt;/div>"
             div +=      "&lt;div class='ui-grid-a'>";
-            getTrainInfos(data[i].getID());
+            getTrainInfos(data[i].getID(), data[i].getStation().getName(), data[i].getArrival().getName(), data[i].getTime(), data[i].getPlatform());
             div +=      "&lt;/div>&lt;/div>";
             $("#search-result").append(div);
         }
@@ -168,16 +166,14 @@ function searchSetTitle(searchType, searchDeparture, searchArrival){
  * @param {int} searchType This is the number describing the type of search
  * @author B00290473
  */
-
 function searchSetHeader(searchType){
     switch (searchType){
         case 1:
             $("#search-header").html("");
             $("#search-header").append("&lt;div class='ui-grid-c' align='right' id='search-header-content'>");
-            $("#search-header-content").append("&lt;div class='ui-block-a'>Arrival time&lt;/div>");
-            $("#search-header-content").append("&lt;div class='ui-block-b'>Platform&lt;/div>");
-            $("#search-header-content").append("&lt;div class='ui-block-c'>Departure time&lt;div>");
-            $("#search-header-content").append("&lt;div class='ui-block-d'>Final destination&lt;/div>");
+            $("#search-header-content").append("&lt;div class='ui-block-a'>Departure time&lt;/div>");
+            $("#search-header-content").append("&lt;div class='ui-block-b'>Platform&lt;div>");
+            $("#search-header-content").append("&lt;div class='ui-block-c'>Final destination&lt;/div>");
             $("#search-header").append("&lt;/div>");
             $("#search-header").trigger("create");
             break;
@@ -250,6 +246,7 @@ function addFavorite(){
  * @author B00294525
  */
 function listFavorites(){
+    $("#favlist").html("");
     var favorites = JSON.parse(localStorage["favorites"]);
     var favlist = $('#favlist');
     
@@ -292,6 +289,54 @@ function createLoader(){
        theme: "b",
        html: ""
     });
+}
+
+/**
+ * addAlarm() - Will add an alarm on a given train
+ * 
+ */
+function addAlarm(al_departure, al_arrival, al_time, al_platform){
+    var al = new Alarm(al_time, al_departure, al_arrival, al_platform);
+    
+    var alarms = JSON.parse(localStorage["alarms"]);
+    alarms.push(al);
+    localStorage["alarms"] = JSON.stringify(alarms);
+    notify(al_time+" - Platform "+al_platform, al_departure+" to "+al_arrival);
+}
+
+/**
+ * loadAlarms - loads the saved alarms
+ * @author B00294525
+ */
+function loadAlarms(){
+    $("#alarmcontent").html("");    //clear alarms view
+    var alarms = JSON.parse(localStorage["alarms"]);
+    
+    for (var i=0; i&lt;alarms.length;i++) {
+            var div =   '&lt;div class="ui-corner-all custom-corners">&lt;div class="ui-bar ui-bar-a">&lt;h3>'+alarms[i].al_departure+' - '+alarms[i].al_arrival+'&lt;/h3>&lt;/div>&lt;div class="ui-body ui-body-a">';
+            div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">Departure: &lt;b>'+alarms[i].al_time+'&lt;/b>&lt;/div>&lt;/div>';
+            div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">Platform: '+alarms[i].al_platform+'&lt;/div>&lt;/div>';
+            div +=      '&lt;div class="ui-grid-a">&lt;button class="ui-btn ui-corner-all" onclick="deleteAlarm('+i+')" style="background: #D7575C;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;">Delete Alarm&lt;/button>&lt;/div>'
+            div +=      "&lt;/div>&lt;/div>&lt;br />";
+            $('#alarmcontent').prepend(div);  
+    }
+    
+    return "alarms loaded";
+}
+
+/**
+ * delteAlarm - deletes one alarm from the list
+ * @param i - index of the alarm in alarms
+ * @author B00294525
+ */
+function deleteAlarm(i){
+    console.log("test");
+    var alarms = JSON.parse(localStorage["alarms"]);
+    
+    alarms.splice(i,1);
+    localStorage["alarms"] = JSON.stringify(alarms);
+    
+    loadAlarms();
 }
 
 /**
@@ -339,10 +384,9 @@ function loadRecents(){
             div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">&lt;b>'+recents[i].r_day+' at '+recents[i].r_time+'&lt;/b>&lt;/div>&lt;/div>';
             div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">From: '+recents[i].r_departure.s_name+'&lt;/div>&lt;/div>';
             div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">To: '+recents[i].r_arrival.s_name+'&lt;/div>&lt;/div>';
-            // div +=      '&lt;a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+recents[i].r_departure+','+recents[i].r_day+','+recents[i].r_time+','+arr+');">View&lt;/a>';
             div +=      '&lt;a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+i+');">View&lt;/a>';
             div +=      "&lt;/div>&lt;/div>&lt;br />";
-            $('#recentsCollapsible').append(div);
+            $('#recentsCollapsible').prepend(div);
     }
     
     return "recents loaded";
@@ -350,11 +394,8 @@ function loadRecents(){
 
 /**
  * searchRecent() - triggers a new search for a favorite.
- * @param {Station} departure - departure station as station object
- * @param {date} date - date
- * @param {String} time - time
- * @param {Station} arrival - arrival station as station object
- * @author B00294525, B00290473
+ * @param {int} i - index: position of the recent in the recents array
+ * @author B00294525
  */
 // function searchRecent(departure,date,time,arrival){
 function searchRecent(i){
@@ -362,14 +403,7 @@ function searchRecent(i){
     var arr = new Station(recents[i].r_arrival.s_name, recents[i].r_arrival.s_code);
     var dep = new Station(recents[i].r_departure.s_name, recents[i].r_departure.s_code);
    
-    $('#station-departure').val(recents[i].r_departure.s_name);
-    $('#station-arrival').val(recents[i].r_arrival.s_name);
-    $('#travel-time').val(recents[i].r_tim);
-    $('#travel-date').val(recents[i].r_day);
-    performSearch("2");
-   
-    // getTrain(dep,recents[i].r_day,recents[i].r_time,arr);
-    // getTrain(departureStation, date, time, arrivalStation);
+    getTrain(dep,recents[i].r_day,recents[i].r_time,arr);
 }
 
 /**
@@ -414,7 +448,26 @@ function handle_geoError(geoError){
             console.log("GEO ERROR : Unknown");
         break;
     }
-}</code></pre>
+}
+
+/**
+ * getNotifStatus() - check the notification setting status to edit the selected item depending on the status
+ * @author B00290473
+ */
+function getNotifStatus(){
+    if(setting_notif_enabled == "true"){
+        $("#select-based-flipswitch").html("");
+        $("#select-based-flipswitch").append("&lt;option value='OFF'>OFF&lt;/option>");
+        $("#select-based-flipswitch").append("&lt;option selected value='ON'>ON&lt;/option>");
+        $("#select-based-flipswitch").trigger("create");
+    }else{
+        $("#select-based-flipswitch").html("");
+        $("#select-based-flipswitch").append("&lt;option selected value='OFF'>OFF&lt;/option>");
+        $("#select-based-flipswitch").append("&lt;option value='ON'>ON&lt;/option>");
+        $("#select-based-flipswitch").trigger("create");
+    }
+}
+</code></pre>
         </article>
     </section>
 
@@ -424,13 +477,13 @@ function handle_geoError(geoError){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#ApiUnitTest">ApiUnitTest</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlarm">addAlarm</a></li><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#Alarm">Alarm</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#changeNotificationStatement">changeNotificationStatement</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#deleteAlarm">deleteAlarm</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getNotifStatus">getNotifStatus</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadAlarms">loadAlarms</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#setting_notif_enabled">setting_notif_enabled</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 05:52:27 GMT+0100 (Paris, Madrid)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 17:29:21 GMT+0100 (Paris, Madrid)
 </footer>
 
 <script> prettyPrint(); </script>

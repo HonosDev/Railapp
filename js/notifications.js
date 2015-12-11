@@ -22,8 +22,8 @@ function notifyTest() {
 
 /**
  * This funcion sends a notification.
- * @param title notification heading
- * @param msg notification message
+ * @param {String} title notification heading
+ * @param {String} msg notification message
  * @author B00294525
  */
 
