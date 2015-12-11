@@ -263,6 +263,41 @@ function addAlarm(al_departure, al_arrival, al_time, al_platform){
 }
 
 /**
+ * loadAlarms - loads the saved alarms
+ * @author B00294525
+ */
+function loadAlarms(){
+    $("#alarmcontent").html("");    //clear alarms view
+    var alarms = JSON.parse(localStorage["alarms"]);
+    
+    for (var i=0; i<alarms.length;i++) {
+            var div =   '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-a"><h3>'+alarms[i].al_departure+' - '+alarms[i].al_arrival+'</h3></div><div class="ui-body ui-body-a">';
+            div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">Departure: <b>'+alarms[i].al_time+'</b></div></div>';
+            div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">Platform: '+alarms[i].al_platform+'</div></div>';
+            div +=      '<div class="ui-grid-a"><button class="ui-btn ui-corner-all" onclick="deleteAlarm('+i+')" style="background: #D7575C;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;">Delete Alarm</button></div>'
+            div +=      "</div></div><br />";
+            $('#alarmcontent').prepend(div);  
+    }
+    
+    return "alarms loaded";
+}
+
+/**
+ * delteAlarm - deletes one alarm from the list
+ * @param i - index of the alarm in alarms
+ * @author B00294525
+ */
+function deleteAlarm(i){
+    console.log("test");
+    var alarms = JSON.parse(localStorage["alarms"]);
+    
+    alarms.splice(i,1);
+    localStorage["alarms"] = JSON.stringify(alarms);
+    
+    loadAlarms();
+}
+
+/**
  * hideLoader - hides the loader.
  * @author B00294525
  */
