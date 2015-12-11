@@ -92,6 +92,15 @@ function init() {
         var alarms = [];
         localStorage["alarms"] = JSON.stringify(alarms);
     }
+ 
+     /**
+     * if the notification setting exist, we change get the setting value
+     * @author B00290473
+     */
+    if (localStorage.getItem("settings_notif")){
+        setting_notif_enabled = localStorage["settings_notif"];
+        getNotifStatus();
+    }
     
     /**
      * event handling for recents collapsible

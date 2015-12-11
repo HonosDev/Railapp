@@ -212,9 +212,9 @@ function listFavorites(){
         var li = $('<li></li>');
         var a = $('<a></a>');
         
-        a.attr("onclick", 'searchFavorite('+favorites[i].f_type+',"'+favorites[i].f_departure+'","'+favorites[i].f_arrival+'");');
+        a.attr("onclick", 'searchFavorite('+favorites[i].getType()+',"'+favorites[i].getDeparture()+'","'+favorites[i].getArrival()+'");');
         a.attr("href", "#page-search");
-        a.text(favorites[i].f_departure+" - "+favorites[i].f_arrival);
+        a.text(favorites[i].getDeparture()+" - "+favorites[i].getArrival());
         
         li.append(a);
         favlist.append(li);
@@ -365,5 +365,23 @@ function handle_geoError(geoError){
         default: 
             console.log("GEO ERROR : Unknown");
         break;
+    }
+}
+
+/**
+ * getNotifStatus() - check the notification setting status to edit the selected item depending on the status
+ * @author B00290473
+ */
+function getNotifStatus(){
+    if(setting_notif_enabled == "true"){
+        $("#select-based-flipswitch").html("");
+        $("#select-based-flipswitch").append("<option value='OFF'>OFF</option>");
+        $("#select-based-flipswitch").append("<option selected value='ON'>ON</option>");
+        $("#select-based-flipswitch").trigger("create");
+    }else{
+        $("#select-based-flipswitch").html("");
+        $("#select-based-flipswitch").append("<option selected value='OFF'>OFF</option>");
+        $("#select-based-flipswitch").append("<option value='ON'>ON</option>");
+        $("#select-based-flipswitch").trigger("create");
     }
 }

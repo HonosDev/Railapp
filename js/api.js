@@ -74,7 +74,11 @@ function getTrainInfos(train_uid, departure, arrival, time, platform){
 			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['aimed_arrival_time']+"</div>");
 			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['platform']+"</div>");
 		});
-		$("#t-"+train_uid).append("<a onclick='addAlarm(\""+departure+"\",\""+arrival+"\",\""+time+"\",\""+platform+"\");' class='ui-btn ui-btn-c ui-shadow' style='background: #3A4895;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;'>Get alarmed</a>");
+		if(setting_notif_enabled){
+	    	$("#t-"+train_uid).append("<a onclick='addAlarm(\""+departure+"\",\""+arrival+"\",\""+time+"\",\""+platform+"\");' class='ui-btn ui-btn-c ui-shadow' style='background: #3A4895;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;'>Get alarmed</a>");
+		}else{
+$("#t-"+train_uid).append("<a class='ui-btn ui-btn-c ui-shadow' style='background: #DADADA;color: #888888;font-size:12px; cursor:default;'>Get alarmed (enable it in settings)</a>");   
+		}
 	});
 }
 

@@ -365,6 +365,23 @@ Alarm.prototype.getPlatform = function(){
 /**
  * Settings 
  */ 
+var setting_notif_enabled = true;
+
+
+/**
+ * notificationStatement() - Allow the user to enable or disable notification system
+ * @author B00290473
+ */
+function changeNotificationStatement(){
+    if(setting_notif_enabled){
+        localStorage["settings_notif"] = false;
+        setting_notif_enabled = false;
+    }else{
+        localStorage["settings_notif"] = true;
+        setting_notif_enabled = true;
+    }
+}
+
 /* 
  * --------------
  * DATE functions
