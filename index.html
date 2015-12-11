@@ -40,8 +40,9 @@
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
             <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
-            <li data-icon="clock"><a href="#alarms">Alarms</a></li>
+            <li data-icon="clock"><a href="#alarms" onclick="setTimeout(function(){loadAlarms();}, 20);">Alarms</a></li>
             <li data-icon="gear"><a href="#settings" onclick="setTimeout(function(){getNotifStatus();}, 20);">Settings</a></li>
+
         </ul>
     </div>
     <!-- panel END -->
@@ -177,9 +178,7 @@
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar" data-iconpos="left">
             <ul>
-                <li><a href="#" data-icon="minus">Earlier</a></li>
                 <li><a href="#" data-icon="star" onclick="addFavorite()">+ Favorite</a></li>
-                <li><a href="#" data-icon="plus">Later</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
@@ -193,7 +192,7 @@
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
             <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
-            <li data-icon="clock"><a href="#alarms">Alarms</a></li>
+            <li data-icon="clock"><a href="#alarms" onclick="setTimeout(function(){loadAlarms();}, 20);">Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
     </div>
@@ -225,7 +224,7 @@
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
             <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
-            <li data-icon="clock"><a href="#alarms">Alarms</a></li>
+            <li data-icon="clock"><a href="#alarms" onclick="setTimeout(function(){loadAlarms();}, 20);">Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
     </div>
@@ -245,19 +244,8 @@
             <p style="color:red;">Your device does not support the notifications API! We are sorry.</p>
         </div>
         <!-- content -->
-        <div class="ui-body ui-body-a">
-            <h3>Paisley - Glasgow</h3>
-            <p>Departure: 10:10</p>
-            <p>Track: 4</p>
-            <div class="ui-grid-a">
-                <div class="ui-block-a">
-                    <p>Alarm:</p>
-                </div>
-                <div class="ui-block-b">
-                    <input type="time" name="travel-time" id="travel-time" value="09:52">
-                </div>
-            </div>
-            <button class="ui-btn ui-corner-all" onclick="notify('Alarm Test','Content blah blub')">Alarm</button>
+        <div id="alarmcontent">
+            
         </div>
     </div><!-- /content -->
 
@@ -265,25 +253,6 @@
         <nav></nav>
     </div><!-- /footer -->
 </div><!-- /page -->
-
-<!-- ALARM POPUP PAGE -->
-<div data-role="page" id="alarm_popup">
-
-    <div data-role="header" data-position="fixed">
-        <a href="#" data-rel="back" data-icon="back" data-iconpos="notext"></a>
-        <h1>Set an alarm</h1>
-    </div><!-- /header -->
-
-    <div data-role="content">
-        <p>Content here.</p>
-    </div><!-- /content -->
-
-    <div data-role="footer" data-position="fixed">
-        <nav></nav>
-    </div><!-- /footer -->
-</div><!-- /page -->
-
-
 
 <!-- SETTINGS PAGE -->
 <div data-role="page" id="settings">
@@ -293,7 +262,7 @@
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
             <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
-            <li data-icon="clock"><a href="#alarms">Alarms</a></li>
+            <li data-icon="clock"><a href="#alarms" onclick="setTimeout(function(){loadAlarms();}, 20)";>Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
     </div>
