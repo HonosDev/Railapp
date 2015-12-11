@@ -212,9 +212,9 @@ function listFavorites(){
         var li = $('<li></li>');
         var a = $('<a></a>');
         
-        a.attr("onclick", 'searchFavorite('+favorites[i].getType()+',"'+favorites[i].getDeparture()+'","'+favorites[i].getArrival()+'");');
+        a.attr("onclick", 'searchFavorite('+favorites[i].f_type+',"'+favorites[i].f_departure+'","'+favorites[i].f_arrival+'");');
         a.attr("href", "#page-search");
-        a.text(favorites[i].getDeparture()+" - "+favorites[i].getArrival());
+        a.text(favorites[i].f_departure+" - "+favorites[i].f_arrival);
         
         li.append(a);
         favlist.append(li);
