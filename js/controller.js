@@ -130,10 +130,9 @@ function searchSetHeader(searchType){
         case 1:
             $("#search-header").html("");
             $("#search-header").append("<div class='ui-grid-c' align='right' id='search-header-content'>");
-            $("#search-header-content").append("<div class='ui-block-a'>Arrival time</div>");
-            $("#search-header-content").append("<div class='ui-block-b'>Platform</div>");
-            $("#search-header-content").append("<div class='ui-block-c'>Departure time<div>");
-            $("#search-header-content").append("<div class='ui-block-d'>Final destination</div>");
+            $("#search-header-content").append("<div class='ui-block-a'>Departure time</div>");
+            $("#search-header-content").append("<div class='ui-block-b'>Platform<div>");
+            $("#search-header-content").append("<div class='ui-block-c'>Final destination</div>");
             $("#search-header").append("</div>");
             $("#search-header").trigger("create");
             break;
@@ -292,7 +291,7 @@ function loadRecents(){
             div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">To: '+recents[i].r_arrival.s_name+'</div></div>';
             div +=      '<a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+i+');">View</a>';
             div +=      "</div></div><br />";
-            $('#recentsCollapsible').append(div);
+            $('#recentsCollapsible').prepend(div);
     }
     
     return "recents loaded";
