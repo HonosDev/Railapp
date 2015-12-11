@@ -4,8 +4,8 @@
  */
 
 /* API AUTH CONFIGURATION (B00290473)*/
-var api_key 	= "2d3480365762b20cb69f48abc2713c83";
-var app_id 		= "1c833fe1";
+var api_key 	= "ba3f7e51d758c877f245cd80971f428c";
+var app_id 		= "70d75240";
 var keyurl 		= "?api_key="+api_key+"&app_id="+app_id;
 var domainurl 	= "http://transportapi.com/v3/uk/";
 
@@ -59,7 +59,7 @@ function getTrain(departureStation, date, time, arrivalStation){
  * @param String ID of the train
  * @author B00290473
  */
-function getTrainInfos(train_uid){
+function getTrainInfos(train_uid, departure, arrival, time, platform){
 	var url = domainurl+"train/service/train_uid:"+train_uid+"///timetable.json"+keyurl;
 
 	var infos = $.getJSON(url, function(data){
@@ -74,7 +74,7 @@ function getTrainInfos(train_uid){
 			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['aimed_arrival_time']+"</div>");
 			$("#t-"+train_uid).append("<div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>"+val['platform']+"</div>");
 		});
-		$("#t-"+train_uid).append("<a class='ui-btn ui-btn-c ui-shadow' style='background: #3A4895;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;'>Get alarmed</a>");
+		$("#t-"+train_uid).append("<a onclick='addAlarm(\""+departure+"\",\""+arrival+"\",\""+time+"\",\""+platform+"\");' class='ui-btn ui-btn-c ui-shadow' style='background: #3A4895;text-shadow: none;color: white;text-transform: uppercase; cursor:pointer;'>Get alarmed</a>");
 	});
 }
 

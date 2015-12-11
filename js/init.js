@@ -83,6 +83,15 @@ function init() {
         var recents = [];
         localStorage["recents"] = JSON.stringify(recents);
     }
+
+    /**
+     * init of the alarm array, if non existent
+     * @author B00290473
+     */
+    if (!localStorage.getItem("alarms")){
+        var alarms = [];
+        localStorage["alarms"] = JSON.stringify(alarms);
+    }
     
     /**
      * event handling for recents collapsible

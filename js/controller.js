@@ -62,7 +62,7 @@ function displayResult(searchType, data){
             div +=      "</div></h3><div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
             div +=      "<div class='ui-grid-a'><div class='ui-block-a' style='width:60%;min-height:30px;'><b>Station Name</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Time</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Platform</b></div></div>"
             div +=      "<div class='ui-grid-a'>";
-            getTrainInfos(data[i].getID());
+            getTrainInfos(data[i].getID(), data[i].getStation().getName(), data[i].getArrival().getName(), data[i].getTime(), data[i].getPlatform());
             div +=      "</div></div>";
             $("#search-result").append(div);
         }
@@ -81,7 +81,7 @@ function displayResult(searchType, data){
             div +=      "</div></h3><div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
             div +=      "<div class='ui-grid-a'><div class='ui-block-a' style='width:60%;min-height:30px;'><b>Station Name</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Time</b></div><div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'><b>Platform</b></div></div>"
             div +=      "<div class='ui-grid-a'>";
-            getTrainInfos(data[i].getID());
+            getTrainInfos(data[i].getID(), data[i].getStation().getName(), data[i].getArrival().getName(), data[i].getTime(), data[i].getPlatform());
             div +=      "</div></div>";
             $("#search-result").append(div);
         }
@@ -247,6 +247,19 @@ function createLoader(){
        theme: "b",
        html: ""
     });
+}
+
+/**
+ * addAlarm() - Will add an alarm on a given train
+ * 
+ */
+function addAlarm(al_departure, al_arrival, al_time, al_platform){
+    var al = new Alarm(al_time, al_departure, al_arrival, al_platform);
+    
+    var alarms = JSON.parse(localStorage["alarms"]);
+    alarms.push(al);
+    localStorage["alarms"] = JSON.stringify(alarms);
+    notify("Train: "+al_departure+" - "+al_arrival, "Your train from "+al_departure+" to "+al_arrival+" will leave at "+al_time+", platform "+al_platform);
 }
 
 /**

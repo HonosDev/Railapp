@@ -83,6 +83,21 @@ var Recent = function(r_type, r_departure, r_arrival, r_day, r_time){
 	this.r_time = r_time;
 }
 
+/**
+ * Alarm - Object Definition
+ * @param al_time Time of the train departure
+ * @param al_departure Departure station
+ * @param al_arrival Arrival station
+ * @param al_platform Platform where the train is arriving and will leave
+ * @author B00290473
+ */
+var Alarm = function(al_time, al_departure, al_arrival, al_platform){
+    this.al_time = al_time;
+    this.al_departure = al_departure;
+    this.al_arrival = al_arrival;
+    this.al_platform = al_platform;
+}
+
 /* 
  * -------------------------------
  * OBJECT PROTOTYPE IMPLEMENTATION
@@ -303,6 +318,48 @@ Favorite.prototype.getDate = function() {
 Favorite.prototype.toString = function() {
 	return console.log("{OBJECT} Favorit ['f_type' => "+this.f_type+", 'f_departure' => "+this.f_departure+", 'f_arrival' => "+this.f_arrival+", 'f_time' => "+this.f_time+"]");
 };
+
+
+
+/**
+ * Alarm OBJECT
+ * getTime() - This method return the time of the alarm (time of the departure)
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getTime = function(){
+    return this.al_time;
+}
+
+/**
+ * Alarm OBJECT
+ * getDeparture() - This method return the departure station of the train alarmed
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getDeparture = function(){
+    return this.al_departure;
+}
+
+/**
+ * Alarm OBJECT
+ * getArrival() - This method return the arrival station of the train alarmed
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getArrival = function(){
+    return this.al_arrival;
+}
+
+/**
+ * Alarm OBJECT
+ * getPlatform() - This method return the platform of the alarmed train
+ * @author B00290473
+ * @return String
+ */
+Alarm.prototype.getPlatform = function(){
+    return this.al_platform;
+}
 
 
 /* 
