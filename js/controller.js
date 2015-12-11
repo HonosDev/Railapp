@@ -15,8 +15,6 @@
  * @author B00290473, B00294525
  */
 function performSearch(typeOfSearch){
-    createLoader(); //function call via console works fine, but does not get triggered/resets when new page loads
-    
     var s_depart    = new Station($("#station-departure").val(), stationToCode($("#station-departure").val()));
     var s_arrival   = new Station($("#station-arrival").val(), stationToCode($("#station-arrival").val()));
     var s_date      = $("#travel-date").val();
@@ -207,6 +205,7 @@ function addFavorite(){
  * @author B00294525
  */
 function listFavorites(){
+    $("#favlist").html("");
     var favorites = JSON.parse(localStorage["favorites"]);
     var favlist = $('#favlist');
     
@@ -291,7 +290,6 @@ function loadRecents(){
             div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;"><b>'+recents[i].r_day+' at '+recents[i].r_time+'</b></div></div>';
             div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">From: '+recents[i].r_departure.s_name+'</div></div>';
             div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">To: '+recents[i].r_arrival.s_name+'</div></div>';
-            // div +=      '<a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+recents[i].r_departure+','+recents[i].r_day+','+recents[i].r_time+','+arr+');">View</a>';
             div +=      '<a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+i+');">View</a>';
             div +=      "</div></div><br />";
             $('#recentsCollapsible').append(div);
@@ -302,10 +300,7 @@ function loadRecents(){
 
 /**
  * searchRecent() - triggers a new search for a favorite.
- * @param departure - departure station as station object
- * @param date - date
- * @param time - time
- * @param arrival - arrival station as station object
+ * @param i - index: position of the recent in the recents array
  * @author B00294525
  */
 // function searchRecent(departure,date,time,arrival){
@@ -314,14 +309,7 @@ function searchRecent(i){
     var arr = new Station(recents[i].r_arrival.s_name, recents[i].r_arrival.s_code);
     var dep = new Station(recents[i].r_departure.s_name, recents[i].r_departure.s_code);
    
-    $('#station-departure').val(recents[i].r_departure.s_name);
-    $('#station-arrival').val(recents[i].r_arrival.s_name);
-    $('#travel-time').val(recents[i].r_tim);
-    $('#travel-date').val(recents[i].r_day);
-    performSearch("2");
-   
-    // getTrain(dep,recents[i].r_day,recents[i].r_time,arr);
-    // getTrain(departureStation, date, time, arrivalStation);
+    getTrain(dep,recents[i].r_day,recents[i].r_time,arr);
 }
 
 /**

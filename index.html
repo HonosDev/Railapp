@@ -46,7 +46,7 @@
     <div data-role="panel" id="menu_panel">
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
-            <li data-icon="star"><a href="#favorites">Favorites</a></li>
+            <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
             <li data-icon="clock"><a href="#alarms">Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
@@ -76,7 +76,7 @@
                         <div class="ui-grid-a">
                             <div class="ui-block-a" style="width:85%">
                                 <label for="station-departure" class="ui-hidden-accessible">Departure station:</label>
-                                <input type="search" name="station-departure" id="station-departure" placeholder="Departure station" value="Paisley Gilmour Street" onkeydown="listshow()">
+                                <input type="search" name="station-departure" id="station-departure" placeholder="Departure station" value="Paisley Gilmour Street">
                             </div>
                             <div class="ui-block-b" style="width:10%;padding-left:2%;">
                                 <a href="#GeoStations" data-rel="popup" data-position-to="window" data-transition="flow" data-role="button" data-icon="location" data-iconpos="notext" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-location ui-btn-icon-notext geolocation-init"></a>
@@ -197,7 +197,7 @@
     <div data-role="panel" id="menu_panel">
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
-            <li data-icon="star"><a href="#favorites">Favorites</a></li>
+            <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
             <li data-icon="clock"><a href="#alarms">Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
@@ -213,8 +213,6 @@
     </div><!-- /header -->
 
     <div data-role="content">
-        <button onclick="listFavorites();">load Favorites</button>
-        <br />
         <ul id="favlist" data-role="listview">
         </ul>
     </div><!-- /content -->
@@ -231,7 +229,7 @@
     <div data-role="panel" id="menu_panel">
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
-            <li data-icon="star"><a href="#favorites">Favorites</a></li>
+            <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
             <li data-icon="clock"><a href="#alarms">Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
@@ -299,7 +297,7 @@
     <div data-role="panel" id="menu_panel">
         <ul data-role="listview">
             <li data-icon="search"><a href="#main">Search</a></li>
-            <li data-icon="star"><a href="#favorites">Favorites</a></li>
+            <li data-icon="star"><a href="#favorites" onclick="setTimeout(function(){listFavorites();}, 20);">Favorites</a></li>
             <li data-icon="clock"><a href="#alarms">Alarms</a></li>
             <li data-icon="gear"><a href="#settings">Settings</a></li>
         </ul>
@@ -317,19 +315,31 @@
     <div data-role="content">
         <ul data-role="listview">
             <li>
+                <!-- First -->
                 <div class="ui-grid-a">
                     <div class="ui-block-a" style="width:65%;">
-                        <h1>SETTING</h1>
+                        <h1>Allow notifications</h1>
                     </div>
                     <div class="ui-block-b" style="width:35%;">
                         <select id="select-based-flipswitch" data-role="flipswitch">
                             <option value="leave">Off</option>
-                            <option value="arrive">On</option>
+                            <option selected="" value="arrive">On</option>
                         </select>
                     </div>
                 </div>
+                <!-- Second -->
+                <div class="ui-grid-a">
+                </div>
             </li>
         </ul>
+        <!-- About -->
+        <br />
+        <div class="ui-grid-a">
+            <p>This app is developed by Samuel D. and Jan-Erik G. and is free software under the MIT License (MIT).</p>
+            <p>Copyright (c) 2015 Samuel D. and Jan-Erik G. Visit us on <a target="_blank" href="https://github.com/HonosDev/Railapp">GitHub</a>!</p>
+            <p></p>
+            <p>The authors do not provide warranty in any form. Train information used is provided by <a target="_blank" href="http://www.transportapi.com/">TransportAPI</a>.</p>
+        </div>
     </div><!-- /content -->
 
     <div data-role="footer" data-position="fixed">

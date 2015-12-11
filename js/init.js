@@ -101,4 +101,5 @@ function init() {
      jQuery(window).ready(function(){
             jQuery(".geolocation-init").click(initGeolocation);
         });
+    
 } /* INIT FUNCTION END */
