@@ -259,7 +259,7 @@ function addAlarm(al_departure, al_arrival, al_time, al_platform){
     var alarms = JSON.parse(localStorage["alarms"]);
     alarms.push(al);
     localStorage["alarms"] = JSON.stringify(alarms);
-    notify("Train: "+al_departure+" - "+al_arrival, "Your train from "+al_departure+" to "+al_arrival+" will leave at "+al_time+", platform "+al_platform);
+    notify(al_time+" - Platform "+al_platform, al_departure+" to "+al_arrival);
 }
 
 /**

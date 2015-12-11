@@ -362,6 +362,9 @@ Alarm.prototype.getPlatform = function(){
 }
 
 
+/**
+ * Settings 
+ */ 
 /* 
  * --------------
  * DATE functions
