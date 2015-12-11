@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: unittest.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: unittest.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * unittest.js - This files will contains all nit test we will do on the app
+ * @author B00290473, B00294525
+ */
+
+/**
+ * Launch unit tests on MODEL methods (in model.js)
+ */
+function ModelUnitTest(){
+	console.log("****** MODEL UNIT TEST ******")
+	console.log("* Can be disable in init.js *")
+	console.log("*****************************")
+
+
+	console.log("Unit test on {OBJECT} DEPARTURE")
+	/* Check Departure Object Definition */
+	d1 = new Departure("PAS", new Date(), "GLA", 1);
+	console.log(d1.getStationCode());
+	console.log(d1.getTime());
+	console.log(d1.getArrival());
+	console.log(d1.getPlatform());
+	console.log(d1.toString());
+
+	console.log("*************************")
+	console.log("Unit test on {OBJECT} ARRIVAL")
+	/* Check Arrival Object Definition */
+	a1 = new Arrival("GLA", new Date(), "PAS", 5);
+	console.log(a1.getStationCode());
+	console.log(a1.getTime());
+	console.log(a1.getDeparture());
+	console.log(a1.getPlatform());
+	console.log(a1.toString());
+
+	console.log("*************************")
+	console.log("Unit test on {OBJECT} STATION")
+	/* Check Station Object Definition */
+	s1 = new Station("Paisley Gilmour Station", "PSL");
+	console.log(s1.getName());
+	console.log(s1.getCode());
+	console.log(s1.toString());
+
+	console.log("*************************")
+	console.log("Unit test on {OBJECT} FAVORIT")
+	/* Check Arrival Object Definition */
+	f1 = new Favorit(2, "GLA", "PSL", new Date());
+	console.log(f1.getType());
+	console.log(f1.getDeparture());
+	console.log(f1.getArrival());
+	console.log(f1.getDate());
+	console.log(f1.toString());
+
+	console.log("*************************")
+	console.log("API Date Regexp tests")
+	console.log(isApiDate("18-12-1995"));
+	console.log(toApiDate("18/12/1995"));
+}
+
+/**
+ * Launch unit tests on API methods (in api.js)
+ */
+function ApiUnitTest(){
+	console.log("******* API UNIT TEST *******")
+	console.log("* Can be disable in init.js *")
+	console.log("*****************************")
+
+	var s2 = new Station("Paisley Gilmour","PYG")
+	getTrain(s2,"","");
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#ApiUnitTest">ApiUnitTest</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 05:52:27 GMT+0100 (Paris, Madrid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

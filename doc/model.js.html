@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: model.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: model.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * model.js - File used like the model of this app/
+ * Contains Objects definitions &amp; all methods that call the API
+ * @author B00290473
+ */
+
+/**
+ * Departure - Object Definition
+ * @constructor
+ * @author B00290473, B00294525
+ * @param {station} d_station This is the departure station code 
+ * @param {date} d_time This is the departure date 
+ * @param {station} d_arrival This is the arrival station code
+ * @param {string} d_platform This is the platform the train is leaving from
+ * @param {station} d_aimed_time This is the arrival time of the train in the station
+ * @param {station} d_origin This is the origin station of the train
+ * @param {string} d_id This is the id of the departure (usefull to get information using api.js method)
+ * @author B00290473
+ */
+var Departure = function(d_station, d_time, d_arrival, d_platform, d_aimed_time, d_origin, d_id){
+	this.d_station = d_station;
+	this.d_time = d_time;
+	this.d_arrival = d_arrival;
+	this.d_platform = d_platform;
+	this.d_aimed_time = d_aimed_time;
+	this.d_origin = d_origin; 
+	this.d_id = d_id; 
+}
+
+/**
+ * Arrival - Object Definition
+ * @constructor
+ * @author B00290473, B00294525
+ * @param {station} a_station This is the arrival station
+ * @param {date} a_time Tis is the arrival date
+ * @param {station} a_departure This is the departure station#
+ * @param {string} a_platform This is the platform the train is arriving on
+ */
+var Arrival = function(a_station, a_time, a_departure, a_platform){
+	this.a_station = a_station;
+	this.a_time = a_time;
+	this.a_departure = a_departure;
+	this.a_platform = a_platform; 
+}
+
+/**
+ * Station - Object Definition 
+ * @constructor
+ * @author B00290473
+ * @param {string} s_name This is the full name of the station
+ * @param {string} s_code This is the code of the station
+ */
+var Station = function(s_name, s_code){
+	this.s_name = s_name;
+	this.s_code = s_code;
+}
+
+/**
+ * Favorite - Object Definition
+ * @constructor
+ * @author B00290473
+ * @param {int} type This is the type of the favorit (describ the type of search made for this)
+ * @param {string} f_departure This is the departure station store as a favorit
+ * @param {string} f_arrival This is the arrival station store as a favorit
+ * @param {date} f_time This is the last time the favorit has been used
+ */
+var Favorite = function(f_type, f_departure, f_arrival, f_time){
+	this.f_type = f_type;
+	this.f_departure = f_departure;
+	this.f_arrival = f_arrival;
+	this.f_time = f_time;
+}
+
+/**
+ * Recent - Object Definition
+ * @constructor
+ * @author B00294525
+ * @param {int} type This is the type of the favorit (describ the type of search made for this)
+ * @param {string} r_departure This is the departure station store as a favorit
+ * @param {string} r_arrival This is the arrival station store as a favorit
+ * @param {date} r_time This is the last time the favorit has been used
+ */
+var Recent = function(r_type, r_departure, r_arrival, r_day, r_time){
+	this.r_type = r_type;
+	this.r_departure = r_departure;
+	this.r_arrival = r_arrival;
+	this.r_day = r_day;
+	this.r_time = r_time;
+}
+
+/* 
+ * -------------------------------
+ * OBJECT PROTOTYPE IMPLEMENTATION
+ * -------------------------------
+ */
+
+/**
+ * Departure OBJECT
+ * getStation() - This method will return the departure station object
+ * @author B00290473
+ * @return Station
+ */
+Departure.prototype.getStation = function() {
+	return this.d_station;
+};
+
+/**
+ * Departure OBJECT
+ * getTime() - This method return the departure time as a date object
+ * @author B00290473
+ * @return date
+ */
+Departure.prototype.getTime = function() {
+	return this.d_time;
+};
+
+/**
+ * Departure OBJECT
+ * getArrival() - This method return the arrival station code
+ * @author B00290473
+ * @return Station
+ */
+Departure.prototype.getArrival = function() {
+	return this.d_arrival;
+};
+
+/**
+ * Departure OBJECT
+ * getPlatform() - This method return the departure platfrom
+ * @author B00294525
+ * @return String
+ */
+Departure.prototype.getPlatform = function() {
+	return this.d_platform;
+};
+
+/**
+ * Departure OBJECT
+ * getAimedTime() - This method return the arrival time of the train
+ * @author B00294525
+ * @return String
+ */
+Departure.prototype.getAimedTime = function() {
+	return this.d_aimed_time;
+};
+
+/**
+ * Departure OBJECT
+ * getOrigin() - This method return the origin station of the train
+ * @author B00294525
+ * @return Station
+ */
+Departure.prototype.getOrigin = function() {
+	return this.d_origin;
+};
+
+/**
+ * Departure OBJECT
+ * getID() - This method return the id of the train
+ * @author B00294525
+ * @return String
+ */
+Departure.prototype.getID = function() {
+	return this.d_id;
+};
+
+/**
+ * Departure OBJECT
+ * toString() - This method return a Depature toString in the javascript console
+ * @author B00290473
+ * @return String
+ */
+Departure.prototype.toString = function() {
+	return console.log("{OBJECT} DEPARTURE ['d_station' => "+this.d_station+", 'd_time' => "+this.d_time+", 'd_arrival' => "+this.d_arrival+"]");
+};
+
+
+/**
+ * Arrival OBJECT
+ * getStationCode() - This method will return the arrival station code
+ * @author B00290473
+ * @return String
+ */
+Arrival.prototype.getStationCode = function() {
+	return this.a_station;
+};
+
+/**
+ * Arrival OBJECT
+ * getTime() - This method return the arrival time as a date object
+ * @author B00290473
+ * @return date
+ */
+Arrival.prototype.getTime = function() {
+	return this.a_time;
+};
+
+/**
+ * Arrival OBJECT
+ * getDeparture() - This method return the departure station code
+ * @author B00290473
+ * @return String
+ */
+Arrival.prototype.getDeparture = function() {
+	return this.a_departure;
+};
+
+/**
+ * Arrival OBJECT
+ * getPlatform() - This method return the arrival platfrom
+ * @author B00294525
+ * @return String
+ */
+Arrival.prototype.getPlatform = function() {
+	return this.a_platform;
+};
+
+/**
+ * Arrival OBJECT
+ * toString() - This method return a Arrival toString in the javascript console
+ * @author B00290473
+ * @return String
+ */
+Arrival.prototype.toString = function() {
+	return console.log("{OBJECT} Arrival ['a_station' => "+this.a_station+", 'a_time' => "+this.a_time+", 'a_departure' => "+this.a_departure+"]");
+};
+
+
+/**
+ * Station OBJECT
+ * getName() - This method will return the full name of the station
+ * @author B00290473
+ * @return String
+ */
+Station.prototype.getName = function() {
+	return this.s_name;
+};
+
+/**
+ * Station OBJECT
+ * getCode() - This method will return the station code
+ * @author B00290473
+ * @return String
+ */
+Station.prototype.getCode = function() {
+	return this.s_code;
+};
+
+/**
+ * Station OBJECT
+ * toString() - This method will return a Station toString in the javascript console
+ * @author B00290473
+ * @return String
+ */
+Station.prototype.toString = function() {
+	return console.log("{OBJECT} Station ['s_name' => "+this.s_name+", 's_code' => "+this.s_code+"]");
+};
+
+
+/**
+ * Favorite OBJECT
+ * getType() - This method return the type of the search (which is the king of search made by the user)
+ * VALUE : 1 = FROM, 2 = FROM/TO
+ * @author B00290473
+ * @return String
+ */
+Favorite.prototype.getType = function() {
+	return this.f_type;
+};
+
+/**
+ * Favorite OBJECT
+ * getDeparture() - This method return the departure station stored in the favorit
+ * @author B00290473
+ * @return String
+ */
+Favorite.prototype.getDeparture = function() {
+	return this.f_departure;
+};
+
+/**
+ * Favorite OBJECT
+ * getArrival() - This method return the arrival station stored in the favorit
+ * @author B00290473
+ * @return String
+ */
+Favorite.prototype.getArrival = function() {
+	return this.f_arrival;
+};
+
+/**
+ * Favorite OBJECT
+ * getDate() - This method return the date stored in the favorit as a string
+ * @author B00290473
+ * @return String
+ */
+Favorite.prototype.getDate = function() {
+	return this.f_time;
+};
+
+
+/**
+ * Favorite OBJECT
+ * toString() - This method return a Favorit toString in the javascript console 
+ * @author B00290473
+ * @return String
+ */
+Favorite.prototype.toString = function() {
+	return console.log("{OBJECT} Favorit ['f_type' => "+this.f_type+", 'f_departure' => "+this.f_departure+", 'f_arrival' => "+this.f_arrival+", 'f_time' => "+this.f_time+"]");
+};
+
+
+/* 
+ * --------------
+ * DATE functions
+ * --------------
+ */
+
+ function isApiDate(dateToCheck){
+ 	if(dateToCheck.match("([0-9]{4})([-])([0-9]{2})([-])([0-9]{2})")){
+ 		return true;
+ 	}else{
+ 		return false;
+ 	}
+ }
+
+ function toApiDate(dateToConvert){
+ 	var split = dateToConvert.split(/([0-9]{2}).([0-9]{2}).([0-9]{4})/);
+ 	return split[3]+"-"+split[1]+"-"+split[2];
+ }
+
+/* 
+ * ------------------
+ * ARRAY STATION/CODE
+ * ------------------
+ */
+
+var stations = {
+	"Aberdeen": "ABD",
+	"Aberdour": "AUR",
+	"Achanalt": "AAT",
+	"Achnasheen": "ACN",
+	"Achnashellach": "ACH",
+	"Addiewell": "ADW",
+	"Airbles": "AIR",
+	"Airdrie": "ADR",
+	"Alexandra Parade": "AXP",
+	"Alexandria": "ALX",
+	"Alness": "ASS",
+	"Altnabreac": "ABC",
+	"Anderston": "AND",
+	"Annan": "ANN",
+	"Anniesland": "ANL",
+	"Arbroath": "ARB",
+	"Ardgay": "ARD",
+	"Ardlui": "AUI",
+	"Ardrossan Harbour": "ADS",
+	"Ardrossan South Beach": "ASB",
+	"Ardrossan Town": "ADN",
+	"Argyle Street": "AGS",
+	"Arisaig": "ARG",
+	"Arrochar &amp; Tarbet": "ART",
+	"Ashfield": "ASF",
+	"Attadale": "ATT",
+	"Auchinleck": "AUK",
+	"Aviemore": "AVM",
+	"Ayr": "AYR",
+	"Baillieston": "BIO",
+	"Balloch": "BSG",
+	"Balmossie": "BSI",
+	"Banavie": "BNV",
+	"Barassie": "BSS",
+	"Bardon Mill": "BLL",
+	"Bargeddie": "BGI",
+	"Barnhill": "BNL",
+	"Barrhead": "BRR",
+	"Barrhill": "BRL",
+	"Barry Links": "BYL",
+	"Bathgate": "BHG",
+	"Bearsden": "BRN",
+	"Beasdale": "BSL",
+	"Beauly": "BEL",
+	"Bellgrove": "BLG",
+	"Bellshill": "BLH",
+	"Bishopbriggs": "BBG",
+	"Bishopton": "BPT",
+	"Blair Atholl": "BLA",
+	"Blairhill": "BAI",
+	"Blantyre": "BLT",
+	"Blaydon": "BLO",
+	"Bogston": "BGS",
+	"Bowling": "BWG",
+	"Brampton Cumbria": "BRP",
+	"Branchton": "BCN",
+	"Breich": "BRC",
+	"Bridge Of Allan": "BEA",
+	"Bridge Of Orchy": "BRO",
+	"Bridgeton": "BDG",
+	"Brora": "BRA",
+	"Broughty Ferry": "BYF",
+	"Brunstane": "BGA",
+	"Burnside": "BUI",
+	"Burntisland": "BTS",
+	"Busby": "BUS",
+	"Cambuslang": "CBL",
+	"Camelon": "CMO",
+	"Cardenden": "CDD",
+	"Cardonald": "CDO",
+	"Cardross": "CDR",
+	"Carfin": "CRF",
+	"Carlisle": "CAR",
+	"Carluke": "CLU",
+	"Carmyle": "CML",
+	"Carnoustie": "CAN",
+	"Carntyne": "CAY",
+	"Carrbridge": "CAG",
+	"Carstairs": "CRS",
+	"Cartsdyke": "CDY",
+	"Cathcart": "CCT",
+	"Charing Cross": "CHG",
+	"Chatelherault": "CTE",
+	"Clarkston": "CKS",
+	"Cleland": "CEA",
+	"Clydebank": "CYK",
+	"Coatbridge Central": "CBC",
+	"Coatbridge Sunnyside": "CBS",
+	"Coatdyke": "COA",
+	"Connel Ferry": "CON",
+	"Corbridge": "CRB",
+	"Corkerhill": "CKH",
+	"Corpach": "CPA",
+	"Corrour": "CRR",
+	"Cowdenbeath": "COW",
+	"Craigendoran": "CGD",
+	"Crewe": "CRE",
+	"Crianlarich": "CNR",
+	"Croftfoot": "CFF",
+	"Crookston": "CKT",
+	"Crosshill": "COI",
+	"Crossmyloof": "CMY",
+	"Croy": "CRO",
+	"Culrain": "CUA",
+	"Cumbernauld": "CUB",
+	"Cupar": "CUP",
+	"Curriehill": "CUH",
+	"Dalgety Bay": "DAG",
+	"Dalmally": "DAL",
+	"Dalmarnock": "DAK",
+	"Dalmeny": "DAM",
+	"Dalmuir": "DMR",
+	"Dalreoch": "DLR",
+	"Dalry": "DLY",
+	"Dalwhinnie": "DLW",
+	"Dingwall": "DIN",
+	"Drem": "DRM",
+	"Drumchapel": "DMC",
+	"Drumfrochar": "DFR",
+	"Drumgelloch": "DRU",
+	"Drumry": "DMY",
+	"Duirinish": "DRN",
+	"Duke Street": "DST",
+	"Dumbarton Central": "DBC",
+	"Dumbarton East": "DBE",
+	"Dumbreck": "DUM",
+	"Dumfries": "DMF",
+	"Dunblane": "DBL",
+	"Duncraig": "DCG",
+	"Dundee": "DEE",
+	"Dunfermline Queen Margaret": "DFL",
+	"Dunfermline Town": "DFE",
+	"Dunkeld &amp; Birnam": "DKD",
+	"Dunlop": "DNL",
+	"Dunrobin Castle": "DNO",
+	"Dyce": "DYC",
+	"East Kilbride": "EKL",
+	"Easterhouse": "EST",
+	"Edinburgh": "EDB",
+	"Edinburgh Park": "EDP",
+	"Elgin": "ELG",
+	"Exhibition Centre": "EXG",
+	"Edinburgh Waverley": "EDW",
+	"Fairlie": "FRL",
+	"Falkirk Grahamston": "FKG",
+	"Falkirk High": "FKK",
+	"Falls Of Cruachan": "FOC",
+	"Fauldhouse": "FLD",
+	"Fearn": "FRN",
+	"Forres": "FOR",
+	"Forsinard": "FRS",
+	"Fort Matilda": "FTM",
+	"Fort William": "FTW",
+	"Garelochhead": "GCH",
+	"Garrowhill": "GAR",
+	"Garscadden": "GRS",
+	"Gartcosh": "GRH",
+	"Garve": "GVE",
+	"Georgemas Junction": "GGJ",
+	"Giffnock": "GFN",
+	"Gilshochill": "GSC",
+	"Girvan": "GIR",
+	"Glasgow Central": "GLC",
+	"Glasgow Queen Street": "GLQ",
+	"Gleneagles": "GLE",
+	"Glenfinnan": "GLF",
+	"Glengarnock": "GLG",
+	"Glenrothes With Thornton": "GLT",
+	"Golf Street": "GOF",
+	"Golspie": "GOL",
+	"Gourock": "GRK",
+	"Greenfaulds": "GRL",
+	"Greenock Central": "GKC",
+	"Greenock West": "GKW",
+	"Gretna Green": "GEA",
+	"Hairmyres": "HMY",
+	"Haltwhistle": "HWH",
+	"Hamilton Central": "HNC",
+	"Hamilton West": "HNW",
+	"Hartwood": "HTW",
+	"Hawkhead": "HKH",
+	"Haydon Bridge": "HDB",
+	"Haymarket": "HYM",
+	"Helensburgh Central": "HLC",
+	"Helensburgh Upper": "HLU",
+	"Helmsdale": "HMS",
+	"Hexham": "HEX",
+	"High Street": "HST",
+	"Hillfoot": "HLF",
+	"Hillington East": "HLE",
+	"Hillington West": "HLW",
+	"Holytown": "HLY",
+	"Howwood": "HOZ",
+	"Huntly": "HNT",
+	"Hyndland": "HYN",
+	"I.B.M.": "HYZ",
+	"Insch": "INS",
+	"Invergordon": "IGD",
+	"Invergowrie": "ING",
+	"Inverkeithing": "INK",
+	"Inverkip": "INP",
+	"Inverness": "INV",
+	"Invershin": "INH",
+	"Inverurie": "INR",
+	"Irvine": "IRV",
+	"Johnstone": "JHN",
+	"Jordanhill": "JOR",
+	"Keith": "KEH",
+	"Kelvindale": "KVD",
+	"Kennishead": "KNS",
+	"Kildonan": "KIL",
+	"Kilmarnock": "KMK",
+	"Kilmaurs": "KLM",
+	"Kilpatrick": "KPT",
+	"Kilwinning": "KWN",
+	"Kinbrace": "KBC",
+	"Kinghorn": "KGH",
+	"Kings Park": "KGP",
+	"Kingsknowe": "KGE",
+	"Kingussie": "KIN",
+	"Kirkcaldy": "KDY",
+	"Kirkconnel": "KRK",
+	"Kirkhill": "KKH",
+	"Kirknewton": "KKN",
+	"Kirkwood": "KWD",
+	"Kyle Of Lochalsh": "KYL",
+	"Ladybank": "LDY",
+	"Lairg": "LRG",
+	"Lanark": "LNK",
+	"Langbank": "LGB",
+	"Langside": "LGS",
+	"Larbert": "LBT",
+	"Largs": "LAR",
+	"Larkhall": "LRH",
+	"Lenzie": "LNZ",
+	"Leuchars": "LEU",
+	"Linlithgow": "LIN",
+	"Livingston North": "LSN",
+	"Livingston South": "LVG",
+	"Loch Awe": "LHA",
+	"Loch Eil Outward Bound": "LHE",
+	"Lochailort": "KCM",
+	"Locheilside": "LCS",
+	"Lochgelly": "LCG",
+	"Lochluichart": "LCC",
+	"Lochwinnoch": "LHW",
+	"London Euston": "KCM",
+	"Longniddry": "LND",
+	"Mallaig": "MLG",
+	"Markinch": "MNC",
+	"Maryhill": "MYH",
+	"Maxwell Park": "MAX",
+	"Maybole": "MAY",
+	"Merryton": "MEY",
+	"Metrocentre": "MCE",
+	"Milliken Park": "MIN",
+	"Milngavie": "MLN",
+	"Monifieth": "MON",
+	"Montrose": "MTS",
+	"Morar": "MRR",
+	"Mosspark": "MPK",
+	"Motherwell": "MTH",
+	"Mount Florida": "MFL",
+	"Mount Vernon": "MTV",
+	"Muir Of Ord": "MOO",
+	"Muirend": "MUI",
+	"Musselburgh": "MUB",
+	"Nairn": "NRN",
+	"Neilston": "NEI",
+	"New Cumnock": "NCK",
+	"Newcastle": "NCL",
+	"Newcraighall": "NEY",
+	"Newton": "NSD",
+	"Newtonmore": "NWR",
+	"Newton-On-Ayr": "NOA",
+	"Nitshill": "NIT",
+	"North Berwick": "NBW",
+	"North Queensferry": "NQU",
+	"Oban": "OBN",
+	"Paisley Canal": "PCN",
+	"Paisley Gilmour Street": "PYG",
+	"Paisley St James": "PYJ",
+	"Partick": "PTK",
+	"Patterton": "PTT",
+	"Perth": "PTH",
+	"Pitlochry": "PIT",
+	"Plockton": "PLK",
+	"Pollokshaws East": "PWE",
+	"Pollokshaws West": "PWW",
+	"Pollokshields East": "PLE",
+	"Pollokshields West": "PLW",
+	"Polmont": "PMT",
+	"Port Glasgow": "PTG",
+	"Portlethen": "PLN",
+	"Possilpark &amp; Parkhouse": "PPK",
+	"Preston": "PRE",
+	"Prestonpans": "PST",
+	"Prestwick Int. Airport": "PWC",
+	"Prestwick Town": "PTW",
+	"Priesthill &amp; Darnley": "PTL",
+	"Prudhoe": "PRU",
+	"Queens Park": "QBR",
+	"Rannoch": "RAN",
+	"Renton": "RTN",
+	"Riding Mill": "RDM",
+	"Rogart": "ROG",
+	"Rosyth": "ROS",
+	"Roy Bridge": "RYB",
+	"Rutherglen": "RUT",
+	"Saltcoats": "SLT",
+	"Sanquhar": "SQH",
+	"Scotscalder": "SCT",
+	"Scotstounhill": "SCH",
+	"Shawlands": "SHL",
+	"Shettleston": "SLS",
+	"Shieldmuir": "SDM",
+	"Shotts": "SHS",
+	"Singer": "SIN",
+	"Slateford": "SLA",
+	"South Gyle": "SGL",
+	"Spean Bridge": "SBR",
+	"Springburn": "SPR",
+	"Springfield": "SPF",
+	"Stepps": "SPS",
+	"Stevenston": "STV",
+	"Stewarton": "STT",
+	"Stirling": "STG",
+	"Stocksfield": "SKS",
+	"Stonehaven": "STN",
+	"Stranraer": "STR",
+	"Strathcarron": "STC",
+	"Stromeferry": "STF",
+	"Summerston": "SUM",
+	"Tain": "TAI",
+	"Taynuilt": "TAY",
+	"Thornliebank": "THB",
+	"Thorntonhall": "THT",
+	"Thurso": "THS",
+	"Troon": "TRN",
+	"Tulloch": "TUL",
+	"Tyndrum Lower": "TYL",
+	"Uddingston": "UDD",
+	"Uphall": "UHA",
+	"Upper Tyndrum": "UHL",
+	"Wallyford": "WAF",
+	"Watford Junction": "WFJ",
+	"Wemyss Bay": "WMS",
+	"West Calder": "WCL",
+	"West Kilbride": "WKB",
+	"Wester Hailes": "WTA",
+	"Westerton": "WES",
+	"Wetheral": "WRL",
+	"Whifflet": "WFF",
+	"Whinhill": "WNL",
+	"Whitecraigs": "WCR",
+	"Wick": "WCK",
+	"Williamwood": "WLM",
+	"Wishaw": "WSH",
+	"Woodhall": "WDL",
+	"Wylam": "WYM",
+	"Yoker:": "YOK"
+};
+
+/**
+ * Station to Code allow you to get the code of a station 
+ */
+function stationToCode(station){
+	if(stations[station] == undefined){
+		return "Unk station";
+	}else{
+		return stations[station];
+	}
+}
+
+/**
+ * Code to station allow you to get the station using the station code
+ */
+function codeToStation(code){
+	for(var row in stations){
+		if(stations[row] == code){
+			return row;
+		}
+	}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#ApiUnitTest">ApiUnitTest</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 05:52:27 GMT+0100 (Paris, Madrid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

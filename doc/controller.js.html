@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * controller.js - This files will contains all methods which link model and transport API
+ * @author B00290473
+ */
+
+
+/**
+ * Search methods
+ *
+ *
+ *
+ * performSearch() - Launch a research identificated by a type.
+ * This function will call the transport API library (api.js) to get results linked to the search.
+ * Also it will save the data from the search as a recent in the localStorage.
+ * @param {int} typeOfSearch This is the number describing the type of search
+ * @author B00290473, B00294525
+ */
+function performSearch(typeOfSearch){
+    createLoader(); //function call via console works fine, but does not get triggered/resets when new page loads
+    
+    var s_depart    = new Station($("#station-departure").val(), stationToCode($("#station-departure").val()));
+    var s_arrival   = new Station($("#station-arrival").val(), stationToCode($("#station-arrival").val()));
+    var s_date      = $("#travel-date").val();
+    var s_time      = $("#travel-time").val();
+    
+    addRecent(typeOfSearch,s_depart,s_arrival, s_date, s_time);
+    
+    switch (typeOfSearch){
+        case "1":
+            searchSetTitle(1, s_depart.getName());
+            searchSetHeader(1);
+            getTrain(s_depart, s_date, s_time);
+            console.log('Search type 1');
+            break;
+
+        case "2":
+            searchSetTitle(2, s_depart.getName(), s_arrival.getName());
+            searchSetHeader(2);
+            getTrain(s_depart, s_date, s_time, s_arrival);
+            console.log('Search type 2');
+            break;
+
+        default:
+            console.log("Unknown type of search");
+            break;
+    }
+}
+
+/**
+ * displayResult() - Display results of a search
+ * This method is called by the api.js file after a getjson request
+ * @param {int} searchType This is the number describing the type of search
+ * @param {Array} data This is all the data that have to be displayed
+ * @author B00290473
+ */
+function displayResult(searchType, data){
+    if(searchType == 1){
+        if(data.length != 0){
+            $("#search-result").html("");
+        }
+        for(var i = 0; i &lt; data.length; i++){
+            var div =   "&lt;div data-role='collapsible' data-theme='b' data-collapsed='true' data-expanded-icon='carat-u' data-collapsed-icon='carat-d'>"
+            div +=       "&lt;h3>&lt;div class='ui-grid-c' align='center'>";
+            div +=      "&lt;div class='ui-block-a'>"+data[i].getAimedTime()+"&lt;/div>";
+            div +=      "&lt;div class='ui-block-b'>"+data[i].getPlatform()+"&lt;/div>";
+            div +=      "&lt;div class='ui-block-c'>"+data[i].getTime()+"&lt;/div>";
+            div +=      "&lt;div class='ui-block-d'>"+data[i].getArrival().getName()+"&lt;/div>";
+            div +=      "&lt;/div>&lt;/h3>&lt;div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
+            div +=      "&lt;div class='ui-grid-a'>&lt;div class='ui-block-a' style='width:60%;min-height:30px;'>&lt;b>Station Name&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Time&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Platform&lt;/b>&lt;/div>&lt;/div>"
+            div +=      "&lt;div class='ui-grid-a'>";
+            getTrainInfos(data[i].getID());
+            div +=      "&lt;/div>&lt;/div>";
+            $("#search-result").append(div);
+        }
+        $("#search-result").trigger("create");
+        hideLoader();
+    }else{
+        if(data.length != 0){
+            $("#search-result").html("");
+        }
+        for(var i = 0; i &lt; data.length; i++){
+            var div =   "&lt;div data-role='collapsible' data-theme='b' data-collapsed='true' data-expanded-icon='carat-u' data-collapsed-icon='carat-d'>";
+            div +=       "&lt;h3>&lt;div class='ui-grid-b' align='center'>";
+            div +=      "&lt;div class='ui-block-a'>"+data[i].getTime()+"&lt;/div>";
+            div +=      "&lt;div class='ui-block-b'>"+data[i].getPlatform()+"&lt;/div>";
+            div +=      "&lt;div class='ui-block-c'>"+data[i].getArrival().getName()+"&lt;/div>";
+            div +=      "&lt;/div>&lt;/h3>&lt;div class='ui-grid-a' id='t-"+data[i].getID()+"'>";
+            div +=      "&lt;div class='ui-grid-a'>&lt;div class='ui-block-a' style='width:60%;min-height:30px;'>&lt;b>Station Name&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Time&lt;/b>&lt;/div>&lt;div class='ui-block-b' style='width:20%;padding-left:1%;min-height:30px;'>&lt;b>Platform&lt;/b>&lt;/div>&lt;/div>"
+            div +=      "&lt;div class='ui-grid-a'>";
+            getTrainInfos(data[i].getID());
+            div +=      "&lt;/div>&lt;/div>";
+            $("#search-result").append(div);
+        }
+        $("#search-result").trigger("create");
+        hideLoader();
+    }
+}
+
+/**
+ * switchSearchForm() - Method switching one type of search to an other by editing the form
+ * @param {int} searchType This is the number describing the type of search
+ * @author B00290473
+ */
+function switchSearchForm(searchType){
+    switch(searchType){
+        case "1":
+            $("#search-type").val("1");
+            $("#station-arrival").prop("disabled", true);
+            break;
+
+        case "2":
+            $("#search-type").val("2");
+            $("#station-arrival").prop("disabled", false);
+            break;
+    }
+}
+
+/**
+ * setTitle() - Search method that will change the html content of the &lt;h3> with the id 'search-title'
+ * We create the title using search informations and then just changing the html using jQuery
+ * @param {int} searchType This is the number describing the type of search
+ * @param {String} searchDeparture This is the name of the departure station
+ * @param {String} searchArrival This is the name of the arrival station
+ * @author B00290473, B00294525
+ */
+function searchSetTitle(searchType, searchDeparture, searchArrival){
+    switch (searchType){
+        case 1:
+            $("#search-title").html('Departures from &lt;strong id="start">'+searchDeparture+"&lt;/strong>");
+            break;
+
+        case 2:
+            $("#search-title").html('&lt;strong id="start">'+searchDeparture+'&lt;/strong> to &lt;strong  id="destination">'+searchArrival+"&lt;/strong>");
+            break;
+    }
+}
+
+/**
+ * searchSetHeader() - The function allow us to set the good header depending of the type of search which as been called
+ * @param {int} searchType This is the number describing the type of search
+ * @author B00290473
+ */
+
+function searchSetHeader(searchType){
+    switch (searchType){
+        case 1:
+            $("#search-header").html("");
+            $("#search-header").append("&lt;div class='ui-grid-c' align='right' id='search-header-content'>");
+            $("#search-header-content").append("&lt;div class='ui-block-a'>Arrival time&lt;/div>");
+            $("#search-header-content").append("&lt;div class='ui-block-b'>Platform&lt;/div>");
+            $("#search-header-content").append("&lt;div class='ui-block-c'>Departure time&lt;div>");
+            $("#search-header-content").append("&lt;div class='ui-block-d'>Final destination&lt;/div>");
+            $("#search-header").append("&lt;/div>");
+            $("#search-header").trigger("create");
+            break;
+
+        case 2:
+            $("#search-header").html("");
+            $("#search-header").append("&lt;div class='ui-grid-b' align='center' id='search-header-content'>");
+            $("#search-header-content").append("&lt;div class='ui-block-a'>Departure time&lt;/div>");
+            $("#search-header-content").append("&lt;div class='ui-block-b'>Platform&lt;div>");
+            $("#search-header-content").append("&lt;div class='ui-block-c'>Final destination&lt;/div>");
+            $("#search-header").append("&lt;/div>");
+            $("#search-header").trigger("create");
+            break;
+    }
+}
+
+/**
+ * setDepartureStation() - This function allow you to set the departure station by editing input value
+ * @param {String} station This is the new station name
+ * @author B00290473
+ */
+function setDepartureStation(station){
+    $("#station-departure").val(station);
+}
+
+/**
+ * resetForm() - Search form will get reseted. All field will be blank except date and time.
+ * In fact, we will call date and time initial function to put the actual date and time informations
+ * @author B00290473, B00294525
+ */
+function resetForm(){
+    $('#search')[0].reset();
+    setSearchDate();
+    $("#station-departure").val("");
+    $("#station-arrival").val("");
+}
+
+/**
+ * This small function switches the content of both station inputs.
+ * @author B00294525
+ */
+function switchStations(){
+    var dep = $("#station-departure").val();
+    var arr = $("#station-arrival").val();
+    $("#station-departure").val(arr);
+    $("#station-arrival").val(dep);
+}
+
+/**
+ * addFavorite() - adds the currents connection to the favorites
+ * @author B00294525
+ */
+function addFavorite(){
+    var type, dest;
+    if ($('#target')){type=2;} else {type=1;}
+    if ($('#destination')){dest=$('#destination').text();} else {dest=="All destinations"}
+    
+    var fav = new Favorite(type,$('#start').text(),dest, new Date());
+    var favorites = JSON.parse(localStorage["favorites"]);
+    favorites.push(fav);
+    localStorage["favorites"] = JSON.stringify(favorites);
+    
+    var info= '&lt;div class="ui-body" id="favoriteAdded" style="margin-bottom:2%; border-style:double; border-color:green;background:lightgreen;">&lt;p style="color:green;text-align:center;">Favorite added!&lt;/p>&lt;/div>';
+    $('#page-search-content').prepend(info);
+    setTimeout(function(){$('#favoriteAdded').remove()}, 2000);
+}
+
+/**
+ * listFavorites() - reads stored favorites from the localStorage and displays them in a listview.
+ * @author B00294525
+ */
+function listFavorites(){
+    var favorites = JSON.parse(localStorage["favorites"]);
+    var favlist = $('#favlist');
+    
+    for (i = 0; i&lt;favorites.length; i++){
+        var li = $('&lt;li>&lt;/li>');
+        var a = $('&lt;a>&lt;/a>');
+        
+        a.attr("onclick", 'searchFavorite('+favorites[i].f_type+',"'+favorites[i].f_departure+'","'+favorites[i].f_arrival+'");');
+        a.attr("href", "#page-search");
+        a.text(favorites[i].f_departure+" - "+favorites[i].f_arrival);
+        
+        li.append(a);
+        favlist.append(li);
+    }
+    
+    if ($('#favlist li')) {favlist.listview( "refresh" );}
+}
+
+/**
+ * searchFavorite() - triggers a new search for a favorite.
+ * @param {int} type - type of search (from or from/to)
+ * @param {String} departure - Name of departure station
+ * @param {String} arrival - Name of arrival station
+ * @author B00294525, B00290473
+ */
+function searchFavorite(type, departure, arrival){
+   $('#station-departure').val(departure);
+   $('#station-arrival').val(arrival);
+   performSearch(type.toString());
+}
+
+/**
+ * createLoader - creates the loader which is visible while we wait for the feeddata to arrive.
+ * @author B00294525
+ */
+function createLoader(){
+    $.mobile.loading("show", {
+       text: "loading connections",
+       textVisible: true,
+       theme: "b",
+       html: ""
+    });
+}
+
+/**
+ * hideLoader - hides the loader.
+ * @author B00294525
+ */
+function hideLoader(){
+    $.mobile.loading("hide");
+}
+
+/**
+ * addRecent - adds the search to the recents list and limits its size to five entries.
+ * @param typeOfSearch
+ * @param {Station} s_depart Departure destation
+ * @param {Station} s_arrival Arrival station
+ * @param {date} s_date Date of the search
+ * @param {string} s_time Time fo the search
+ * @author B00294525, B00290473
+ */
+function addRecent(typeOfSearch,s_depart,s_arrival, s_date, s_time){
+    var recent = new Recent(typeOfSearch,s_depart,s_arrival, s_date, s_time);
+    var recents = JSON.parse(localStorage["recents"]);
+    
+    //limit recents to 5 entries
+    if (recents.length > 4){
+        recents.splice(0,1);
+    }
+    
+    recents.push(recent);
+    localStorage["recents"] = JSON.stringify(recents);
+}
+
+/**
+
+ * loadRecents - loads the data of recent searches
+ * @author B00294525
+ */
+function loadRecents(){
+    var recents = JSON.parse(localStorage["recents"]);
+    
+    for (i=0; i&lt;recents.length;i++) {
+        var arr = new Station(recents[i].r_arrival.s_name, recents[i].r_arrival.s_code);
+        var dep = new Station(recents[i].r_departure.s_name, recents[i].r_departure.s_code);
+            var div =   '&lt;div class="ui-corner-all custom-corners">&lt;div class="ui-bar ui-bar-a">&lt;h3>'+recents[i].r_departure.s_code+' - '+recents[i].r_arrival.s_code+'&lt;/h3>&lt;/div>&lt;div class="ui-body ui-body-a">';
+            div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">&lt;b>'+recents[i].r_day+' at '+recents[i].r_time+'&lt;/b>&lt;/div>&lt;/div>';
+            div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">From: '+recents[i].r_departure.s_name+'&lt;/div>&lt;/div>';
+            div +=      '&lt;div class="ui-grid-a">&lt;div class="ui-block-a" style="width:100%;min-height:30px;">To: '+recents[i].r_arrival.s_name+'&lt;/div>&lt;/div>';
+            // div +=      '&lt;a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+recents[i].r_departure+','+recents[i].r_day+','+recents[i].r_time+','+arr+');">View&lt;/a>';
+            div +=      '&lt;a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+i+');">View&lt;/a>';
+            div +=      "&lt;/div>&lt;/div>&lt;br />";
+            $('#recentsCollapsible').append(div);
+    }
+    
+    return "recents loaded";
+}
+
+/**
+ * searchRecent() - triggers a new search for a favorite.
+ * @param {Station} departure - departure station as station object
+ * @param {date} date - date
+ * @param {String} time - time
+ * @param {Station} arrival - arrival station as station object
+ * @author B00294525, B00290473
+ */
+// function searchRecent(departure,date,time,arrival){
+function searchRecent(i){
+    var recents = JSON.parse(localStorage["recents"]);
+    var arr = new Station(recents[i].r_arrival.s_name, recents[i].r_arrival.s_code);
+    var dep = new Station(recents[i].r_departure.s_name, recents[i].r_departure.s_code);
+   
+    $('#station-departure').val(recents[i].r_departure.s_name);
+    $('#station-arrival').val(recents[i].r_arrival.s_name);
+    $('#travel-time').val(recents[i].r_tim);
+    $('#travel-date').val(recents[i].r_day);
+    performSearch("2");
+   
+    // getTrain(dep,recents[i].r_day,recents[i].r_time,arr);
+    // getTrain(departureStation, date, time, arrivalStation);
+}
+
+/**
+ * initGeolocation() - This functin will allow us to get the user geolocation
+ * @author B00290473
+ */
+function initGeolocation() {
+    navigator.geolocation.getCurrentPosition(handle_initGeolocation, handle_geoError);
+}
+
+/**
+ * handle_initGeolocation() - This handler function initiate the Geolocation and call the get station method using geo position
+ * @param {Geoposition} geoPosition This is the variable called back from the getCurrentPosition method called by initGeolocation()
+ * @author B00290473 
+ */
+function handle_initGeolocation(geoPosition){
+    console.log(geoPosition);
+    console.log('Lat: '+geoPosition.coords.latitude+ '\nLon: '+geoPosition.coords.longitude);
+    getStationByGeo(geoPosition.coords.latitude, geoPosition.coords.longitude, 5);
+}
+
+/**
+ * handle_geoError() - This handler function is used to identificate any errors coming from the Geolocation initiation
+ * @param {Error} geoError This variable is calledback from the getCurrentPosition method 
+ * @author B00290473
+ */
+function handle_geoError(geoError){
+    switch (geoError){
+        case error.PERMISSION_DENIED: 
+            console;LOG("GEO ERROR : Permission denied");
+        break;
+ 
+        case error.POSITION_UNAVAILABLE: 
+            console.log("GEO ERROR : Position unavailable");
+        break;
+ 
+        case error.TIMEOUT: 
+            console.log("GEO ERROR : Request timeout");
+        break;
+ 
+        default: 
+            console.log("GEO ERROR : Unknown");
+        break;
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Arrival.html">Arrival</a></li><li><a href="Departure.html">Departure</a></li><li><a href="Favorite.html">Favorite</a></li><li><a href="Recent.html">Recent</a></li><li><a href="Station.html">Station</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addRecent">addRecent</a></li><li><a href="global.html#api_key">api_key</a></li><li><a href="global.html#ApiUnitTest">ApiUnitTest</a></li><li><a href="global.html#codeToStation">codeToStation</a></li><li><a href="global.html#createLoader">createLoader</a></li><li><a href="global.html#displayResult">displayResult</a></li><li><a href="global.html#getStationByGeo">getStationByGeo</a></li><li><a href="global.html#getTrain">getTrain</a></li><li><a href="global.html#getTrainInfos">getTrainInfos</a></li><li><a href="global.html#handle_geoError">handle_geoError</a></li><li><a href="global.html#handle_initGeolocation">handle_initGeolocation</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#initGeolocation">initGeolocation</a></li><li><a href="global.html#listFavorites">listFavorites</a></li><li><a href="global.html#loadRecents">loadRecents</a></li><li><a href="global.html#ModelUnitTest">ModelUnitTest</a></li><li><a href="global.html#notify">notify</a></li><li><a href="global.html#notifyTest">notifyTest</a></li><li><a href="global.html#performSearch">performSearch</a></li><li><a href="global.html#resetForm">resetForm</a></li><li><a href="global.html#searchFavorite">searchFavorite</a></li><li><a href="global.html#searchRecent">searchRecent</a></li><li><a href="global.html#searchSetHeader">searchSetHeader</a></li><li><a href="global.html#searchSetTitle">searchSetTitle</a></li><li><a href="global.html#setDepartureStation">setDepartureStation</a></li><li><a href="global.html#stationToCode">stationToCode</a></li><li><a href="global.html#switchSearchForm">switchSearchForm</a></li><li><a href="global.html#switchStations">switchStations</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Dec 11 2015 05:52:27 GMT+0100 (Paris, Madrid)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
