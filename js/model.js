@@ -67,6 +67,22 @@ var Favorite = function(f_type, f_departure, f_arrival, f_time){
 	this.f_time = f_time;
 }
 
+/**
+ * Recent - Object Definition
+ * @author B00294525
+ * @param int type This is the type of the favorit (describ the type of search made for this)
+ * @param string r_departure This is the departure station store as a favorit
+ * @param string r_arrival This is the arrival station store as a favorit
+ * @param date r_time This is the last time the favorit has been used
+ */
+var Recent = function(r_type, r_departure, r_arrival, r_day, r_time){
+	this.r_type = r_type;
+	this.r_departure = r_departure;
+	this.r_arrival = r_arrival;
+	this.r_day = r_day;
+	this.r_time = r_time;
+}
+
 /* 
  * -------------------------------
  * OBJECT PROTOTYPE IMPLEMENTATION

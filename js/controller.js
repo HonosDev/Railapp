@@ -22,26 +22,21 @@ function performSearch(typeOfSearch){
     var s_date      = $("#travel-date").val();
     var s_time      = $("#travel-time").val();
     
-    //create favorite for recents
-    var recent = new Favorite(typeOfSearch,s_depart,s_arrival, s_date);
-    var recents = JSON.parse(localStorage["recents"]);
-    //TODO limit recents to 5 entries and move up
-    recents.push(recent);
-    localStorage["recents"] = JSON.stringify(recents);
+    addRecent(typeOfSearch,s_depart,s_arrival, s_date, s_time);
     
     switch (typeOfSearch){
         case "1":
             searchSetTitle(1, s_depart.getName());
             searchSetHeader(1);
             getTrain(s_depart, s_date, s_time);
-            console.log('Search 1');
+            console.log('Search type 1');
             break;
 
         case "2":
             searchSetTitle(2, s_depart.getName(), s_arrival.getName());
             searchSetHeader(2);
             getTrain(s_depart, s_date, s_time, s_arrival);
-            console.log('Search 2');
+            console.log('Search type 2');
             break;
 
         default:
@@ -204,6 +199,7 @@ function addFavorite(){
     
     var info= '<div class="ui-body" id="favoriteAdded" style="margin-bottom:2%; border-style:double; border-color:green;background:lightgreen;"><p style="color:green;text-align:center;">Favorite added!</p></div>';
     $('#page-search-content').prepend(info);
+    setTimeout(function(){$('#favoriteAdded').remove()}, 2000);
 }
 
 /**
@@ -231,6 +227,9 @@ function listFavorites(){
 
 /**
  * searchFavorite() - triggers a new search for a favorite.
+ * @param type - type of search (from or from/to)
+ * @param departure - Name of departure station
+ * @param arrival - Name of arrival station
  * @author B00294525
  */
 function searchFavorite(type, departure, arrival){
@@ -261,16 +260,68 @@ function hideLoader(){
 }
 
 /**
+ * addRecent - adds the search to the recents list and limits its size to five entries.
+ * @author B00294525
+ */
+function addRecent(typeOfSearch,s_depart,s_arrival, s_date, s_time){
+    var recent = new Recent(typeOfSearch,s_depart,s_arrival, s_date, s_time);
+    var recents = JSON.parse(localStorage["recents"]);
+    
+    //limit recents to 5 entries
+    if (recents.length > 4){
+        recents.splice(0,1);
+    }
+    
+    recents.push(recent);
+    localStorage["recents"] = JSON.stringify(recents);
+}
+
+/**
+
  * loadRecents - loads the data of recent searches
  * @author B00294525
  */
 function loadRecents(){
-    //create favorite for recents
     var recents = JSON.parse(localStorage["recents"]);
     
     for (i=0; i<recents.length;i++) {
-        //TODO transform Favorite objects into collapsible view
+        var arr = new Station(recents[i].r_arrival.s_name, recents[i].r_arrival.s_code);
+        var dep = new Station(recents[i].r_departure.s_name, recents[i].r_departure.s_code);
+            var div =   '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-a"><h3>'+recents[i].r_departure.s_code+' - '+recents[i].r_arrival.s_code+'</h3></div><div class="ui-body ui-body-a">';
+            div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;"><b>'+recents[i].r_day+' at '+recents[i].r_time+'</b></div></div>';
+            div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">From: '+recents[i].r_departure.s_name+'</div></div>';
+            div +=      '<div class="ui-grid-a"><div class="ui-block-a" style="width:100%;min-height:30px;">To: '+recents[i].r_arrival.s_name+'</div></div>';
+            // div +=      '<a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+recents[i].r_departure+','+recents[i].r_day+','+recents[i].r_time+','+arr+');">View</a>';
+            div +=      '<a href="#page-search" class="ui-btn ui-btn-icon-right ui-icon-arrow-r" onclick="searchRecent('+i+');">View</a>';
+            div +=      "</div></div><br />";
+            $('#recentsCollapsible').append(div);
     }
+    
+    return "recents loaded";
+}
+
+/**
+ * searchRecent() - triggers a new search for a favorite.
+ * @param departure - departure station as station object
+ * @param date - date
+ * @param time - time
+ * @param arrival - arrival station as station object
+ * @author B00294525
+ */
+// function searchRecent(departure,date,time,arrival){
+function searchRecent(i){
+    var recents = JSON.parse(localStorage["recents"]);
+    var arr = new Station(recents[i].r_arrival.s_name, recents[i].r_arrival.s_code);
+    var dep = new Station(recents[i].r_departure.s_name, recents[i].r_departure.s_code);
+   
+    $('#station-departure').val(recents[i].r_departure.s_name);
+    $('#station-arrival').val(recents[i].r_arrival.s_name);
+    $('#travel-time').val(recents[i].r_tim);
+    $('#travel-date').val(recents[i].r_day);
+    performSearch("2");
+   
+    // getTrain(dep,recents[i].r_day,recents[i].r_time,arr);
+    // getTrain(departureStation, date, time, arrivalStation);
 }
 
 /**

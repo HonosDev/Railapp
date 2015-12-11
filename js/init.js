@@ -19,6 +19,10 @@ function setSearchDate(){
     $('#travel-time').val(time);
 }
 
+/**
+ * init() - This function cointains routines necessary for the initiation of the app aftter the page loaded.
+ * @author B00290473, B00294525
+ */
 function init() {
 
     /**
@@ -64,6 +68,7 @@ function init() {
     
     /**
      * init of the favorites array, if non existent
+     * @author B00294525
      */
     if (!localStorage.getItem("favorites")){
         var favorites = [];
@@ -72,14 +77,26 @@ function init() {
     
     /**
      * init of the recent-search array, if non existent
+     * @author B00294525
      */
     if (!localStorage.getItem("recents")){
         var recents = [];
         localStorage["recents"] = JSON.stringify(recents);
     }
     
+    /**
+     * event handling for recents collapsible
+     * @author B00294525
+     */
+    $('#recentColl').bind('collapsibleexpand', function () {
+        loadRecents();
+    }).bind('collapsiblecollapse', function () {
+        $("#recentsCollapsible").html("");
+    });
+    
     /** 
      * Let's init the geolocation 
+     * @author B00290473
      */
      jQuery(window).ready(function(){
             jQuery(".geolocation-init").click(initGeolocation);
